@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="utf-8" />
+
+    <title>Lungo.Sugar.Sound by @soyjavi</title>
+
+    <link rel="stylesheet" href="../../Lungo.Release/lungo-1.0.0.min.css">
+    <link rel="stylesheet" href="../../Lungo.Release/lungo.theme.default.css">
+    <style>
+        a{ color: #fff; display:block; background: #000; font-size:24px; width:128px; text-align:center;margin:16px; padding: 4px;}
+    </style>
+</head>
+
+<body>
+    <a href="#" id="jump">Jump</a>
+    <a href="#" id="kick">Kick</a>
+
+    <script src="../../Lungo.Release/lungo-1.0.0.packed.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../Lungo.Sugar.Sound.js"></script>
+    <script>
+        $(document).ready(function(){
+            document.getElementById('jump').addEventListener('click', function() {
+                LUNGO.Sugar.Sound.play('sounds/smb_jumpsmall.wav');
+            }, false);
+
+            document.getElementById('kick').addEventListener('click', function() {
+                LUNGO.Sugar.Sound.play('sounds/smb_kick.wav');
+            }, false);
+        });
+    </script>
+</body> 
+</html>
