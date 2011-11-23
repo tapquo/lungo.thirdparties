@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta charset="utf-8" />
+
+	<title>Lungo.Sugar.DatePicker by @haas85</title>
+
+	<link rel="stylesheet" href="../../Lungo.Release/lungo-1.0.0.min.css">
+	<link rel="stylesheet" href="../../Lungo.Release/lungo.theme.default.css">
+	<link rel="stylesheet" href="../lungo.sugar.datepicker.css">
+</head> 
+ 
+<body>
+    <button onclick="showcalendar()" style="position:absolute;z-index:1;margin:50px auto auto 50px;">Show Calendar</button>
+    <script src="../../Lungo.Release/lungo-1.0.0.packed.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../lungo.sugar.datepicker.js"></script>
+    <script>
+		function proof(day,month,year){
+			alert("Day: " + day + " Month: " + LUNGO.Sugar.DatePicker.getMonthName('en',month) + " Year: " + year);
+		}
+
+		function showcalendar(){
+		        //startDatepicker(language,callback)
+            		LUNGO.Sugar.DatePicker.startDatepicker('en',proof);
+		}
+    </script>
+</body> 
+</html>
