@@ -1,0 +1,15 @@
+table.datepicker{width:100%;border-collapse:collapse;text-align:center;}
+tr.weekdays{font-size:1.2em;}
+tr.weekdays td{padding-top:0.5em;font-weight:bold;border-bottom-style:solid;border-bottom-width:2px;text-align:center;background-color:#b5b5b5;}
+td.pickerarrow{background-color:#494949;text-align: center;color:#efefef;font-weight:bold;padding-top: 1em;padding-bottom: 1em;}
+td.pickerleft{border-top-left-radius:10px;-moz-border-radius-topleft:10px;-webkit-border-top-left-radius:10px;}
+td.pickerright{border-top-right-radius:10px;-moz-border-radius-topright:10px;-webkit-border-top-ritght-radius:10px;}
+td.pickermonth{background-color:#575757;padding:3px;text-align: center;color:#efefef;font-weight:bold;font-size: 1.5em;}
+td.datePickerDay{text-align:center;padding:8px;font-size: 1.5em;background-color:#efefef;}
+tr.pickerhead td{color:#efefef;}
+tr.pickerfooter td{background-color:#494949;color:#efefef;border-top-color:#efefef;border-width:2px;border-bottom-right-radius:10px;-moz-border-radius-bottomright:10px;-webkit-border-bottom-right-radius:10px;border-bottom-left-radius:10px;-moz-border-radius-bottomleft:10px;-webkit-border-bottom-left-radius:10px;font-weight:bold;text-align:center;padding-top: 1em;padding-bottom: 1em;}
+tr.datePickerDay{color:black;}
+td.datePickerToday{text-align:center;font-size: 1.5em;background-color:#efefef;}
+div.today{padding-top:8px;padding-bottom:8px;background-color:#b5b5b5;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;height:100%;width:100%;}
+.dateContainer{position:absolute;width:100%;height:100%;z-index:3;background-color: rgba(0, 0, 0, 0.5);}
+.dateContainer .datePickerObject{position:relative;margin:2em 1em auto 1em;z-index:2;}
