@@ -1,0 +1,20 @@
+.simpleGallery{position:absolute;width:100%;height:100%;z-index:3;background:none;font-size:95%;color:#ffffff;}
+.simpleGallery img {position:absolute;border:10px solid #FFF;box-shadow: 2px 2px 8px rgba(0,0,0,0.5);-moz-box-shadow: 2px 2px 8px rgba(0,0,0,0.5);-webkit-box-shadow: 2px 2px 8px rgba(0,0,0,0.5);z-index: 9999;-moz-transition: all 0.2s ease;-webkit-transition: all 0.2s ease;-o-transition: all 0.2s ease;transition: all 0.2s ease;max-width:270px;margin-top: 100px;margin-left:10px;}
+.simpleGalleryactive {z-index: 1;}
+.simpleGalleryinactive {z-index: -1 !important;}
+@-webkit-keyframes shuffle {
+	0% {
+		margin-left: 10px;
+		opacity: 1;
+	}
+	100% {
+		margin-left: 10px;
+		opacity: 0;
+		z-index: -1 !important;
+	}
+}
+.simpleGalleryanimate {
+	-webkit-animation-name: shuffle;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: 1;
+}
