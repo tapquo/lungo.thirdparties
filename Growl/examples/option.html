@@ -8,13 +8,13 @@
 
 	<title>Lungo.Sugar.Growl by @soyjavi</title>
 
-	<link rel="stylesheet" href="../../Lungo.Release/lungo-1.0.0.min.css">
+	<link rel="stylesheet" href="../../Lungo.Release/lungo-1.0.3.min.css">
 	<link rel="stylesheet" href="../../Lungo.Release/lungo.theme.default.css">
 	<link rel="stylesheet" href="../lungo.sugar.growl.css">
-</head> 
- 
+</head>
+
 <body>
-    <script src="../../Lungo.Release/lungo-1.0.0.packed.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../Lungo.Release/lungo-1.0.3.packed.js" type="text/javascript" charset="utf-8"></script>
     <script src="../lungo.sugar.growl.js"></script>
     <script>
         $(document).ready(function(){
@@ -25,20 +25,20 @@
             options.push({name:'...with Flickr', icon:'picture', color:'pink', callback: flickr});
             LUNGO.Sugar.Growl.option('Select share method', options);
         });
-        
+
         function twitter() {
             alert('Twitter');
             LUNGO.Sugar.Growl.hide();
         };
-        
+
         function facebook() {
             alert('Facebook');
             LUNGO.Sugar.Growl.hide();
         };
-        
+
         function flickr(){
             LUNGO.Sugar.Growl.show('Hello world!', 'earth', false, 2);
         }
     </script>
-</body> 
+</body>
 </html>
