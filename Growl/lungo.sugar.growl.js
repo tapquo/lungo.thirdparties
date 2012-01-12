@@ -1,8 +1,9 @@
-/** 
+/**
  * Growl Notification system in CSS3
- * 
+ *
  * @namespace LUNGO.Sugar
  * @class Growl
+ * @version 1.1
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
@@ -21,7 +22,6 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
     var CSS_CLASS = {
         VISIBLE: 'visible',
         SHOW: 'show',
-        HIDE: 'hide',
         WORKING: 'working',
         INPUT: 'input'
     }
@@ -31,17 +31,14 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
 
     /**
      *
-     *
-     *
-     *
      */
-    var show = function(title, icon, animate, seconds, callback) {
+    var show = function(title, description, icon, animate, seconds, callback) {
         _showGrowlModal(true);
-        
-        var modal = $(SELECTOR.MODAL);
+
+        var modal = lng.dom(SELECTOR.MODAL);
         modal.removeClass(CSS_CLASS.SHOW);
         modal.removeClass(CSS_CLASS.INPUT);
-        modal.html('<span class="big icon ' + icon + '"></span><strong>' + title + '<strong>');
+        modal.html('<span class="big icon ' + icon + '"></span><strong>' + title + '</strong><small>' + description + '</small>');
         _animate(modal, animate);
         modal.show().addClass(CSS_CLASS.SHOW);
 
@@ -50,32 +47,33 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
 
     /**
      *
-     *
-     *
-     *
      */
     var hide = function() {
         _hide_children();
 
         setTimeout(function() {
-            $(SELECTOR.GROWL).hide();
-        }, 100);
+            lng.dom(SELECTOR.GROWL).style('display', 'none');
+        }, 300);
     };
 
     /**
      *
-     *
-     *
+     */
+    var loading = function(title, description) {
+        //@ToDo
+    };
+
+    /**
      *
      */
     var notify = function(title, description, icon, type, seconds, callback) {
         _showGrowlModal(false);
 
-        var notify = $(SELECTOR.NOTIFY);
+        var notify = lng.dom(SELECTOR.NOTIFY);
         if (type) {
             notify.addClass(type);
         }
-        notify.html('<span class="icon ' + icon + '"></span><strong>' + title + '</strong><br/><em>' + description + '</strong>');
+        notify.html('<span class="icon ' + icon + '"></span><strong>' + title + '</strong><br/><small>' + description + '</small>');
 
         setTimeout(function() {
             notify.addClass(CSS_CLASS.SHOW);
@@ -86,35 +84,39 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
 
     /**
      *
-     *
-     *
-     *
      */
     var option = function(title, options) {
         _showGrowlModal(true);
 
         _options = options;
-
-        $(SELECTOR.MODAL).removeClass(CSS_CLASS.WORKING).removeClass(CSS_CLASS.SHOW);
-        
         var buttons = _createButtons(options);
-        $(SELECTOR.MODAL).addClass('input').html('<span class="title">' + title + '</span>' + buttons);
-        $('.growl .modal').show().addClass('show');
+
+
+        var modal = lng.dom(SELECTOR.MODAL);
+        modal.removeClass(CSS_CLASS.WORKING).removeClass(CSS_CLASS.SHOW);
+        modal.addClass('input').html('<strong>' + title + '</strong>' + buttons).show();
+
+        setTimeout(function(){
+            modal.addClass('show');
+        }, 300);
     };
 
+
     var _init = function() {
-        $(SELECTOR.BODY).append(MARKUP_GROWL);
+        lng.dom(SELECTOR.BODY).append(MARKUP_GROWL);
         _subscribeEvents();
     };
 
     var _showGrowlModal = function(modal) {
-        var growl = $(SELECTOR.GROWL);
-        if (!growl.is(CSS_CLASS.VISIBLE)) {
+        var growl = lng.dom(SELECTOR.GROWL);
+
+        if (!growl.style('display') === 'block') {
             growl.show();
         }
         if (modal) {
             growl.addClass('modal');
         }
+
     };
 
     var _animate = function(element, animate) {
@@ -131,7 +133,6 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         for (var i = 0, len = options.length; i < len; i++) {
             buttons += _option_button(options[i].color, 'growl_option_' + i, options[i].icon, options[i].name);
         };
-        buttons += _option_button('red', undefined, 'cancel', 'Cancel');
 
         return buttons;
     };
@@ -156,21 +157,21 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
     };
 
     var _hide_child = function(selector) {
-        var child = $(selector);
+        var child = lng.dom(selector);
         if (child.hasClass(CSS_CLASS.SHOW)) {
             child.removeClass(CSS_CLASS.SHOW);
         }
     };
 
     var _subscribeEvents = function() {
-        $(SELECTOR.NOTIFY).bind('click', function() {
-            $(SELECTOR.NOTIFY).removeClass(CSS_CLASS.SHOW);
+        lng.dom(SELECTOR.NOTIFY).bind('click', function() {
+            lng.dom(SELECTOR.NOTIFY).removeClass(CSS_CLASS.SHOW);
         });
 
 
-        $('.growl .modal a').live('click', function(event) {
-            if ($(this).attr('id') !== '') {
-                id = $(this).attr('id').replace(/growl_option_/g, '');
+        lng.dom('.growl .modal a').tap(function(event) {
+            if (lng.dom(this).attr('id') !== '') {
+                id = lng.dom(this).attr('id').replace(/growl_option_/g, '');
                 setTimeout(_options[id].callback, 100);
             } else {
                 event.preventDefault();
@@ -186,6 +187,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         show: show,
         hide: hide,
         notify: notify,
-        option: option
+        option: option,
+        loading: loading
     }
 })(LUNGO);

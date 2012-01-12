@@ -12,8 +12,6 @@
 
     <link rel="stylesheet" href="../../Lungo.Release/lungo.theme.default.css">
     <link rel="stylesheet" href="../lungo.sugar.growl.css">
-
-
 </head>
 
 <body>
@@ -24,23 +22,13 @@
         <footer></footer>
     </section>
 
-    <!--
-    <div class="growl" style="display: block; ">
-        <div class="modal"></div>
-        <div class="notify alert show">
-            <span class="icon target"></span>
-            <strong>Hello world!</strong>
-            <br>
-            <small>Description sample</small>
-        </div>
-    </div>
-    -->
-
     <script src="../../Lungo.Release/lungo-1.1.packed.js"></script>
     <script src="../lungo.sugar.growl.js"></script>
     <script>
         LUNGO.dom(document).ready(function(){
-            LUNGO.Sugar.Growl.notify('Hello world!', 'Description sample', 'wifi', 'error', 2);
+            //show(title, icon, animate, seconds, callback)
+            //LUNGO.Sugar.Growl.show('Radar is on', 'We ll buzz your phone when you are near cool places', 'loading', true);
+            LUNGO.Sugar.Growl.loading();
         });
     </script>
 </body>
