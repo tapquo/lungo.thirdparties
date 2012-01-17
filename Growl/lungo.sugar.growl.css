@@ -1,4 +1,4 @@
-.growl{position:absolute;width:100%;height:100%;z-index:3;background:none;font-size:95%;color:#ffffff;}
+.growl{position:absolute;width:100%;height:100%;z-index:3;background:none;font-size:95%;color:#ffffff;display:none;}
 .growl.modal{background-color:rgba(0, 0, 0, 0.5);}
 .growl .modal{position:absolute;width:136px;margin:-68px auto auto -68px;padding:8px 0;left:50%;top:50%;z-index:1;background-color:rgba(0, 0, 0, 0.75);-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;text-align:center;-webkit-transform:scale(0.75);-moz-transform:scale(0.75);-ms-transform:scale(0.75);-o-transform:scale(0.75);transform:scale(0.75);opacity:0;transition-property:scale, opacity;-webkit-transition:300ms cubic-bezier(0.39, 0.575, 0.565, 1);-moz-transition:300ms cubic-bezier(0.39, 0.575, 0.565, 1);-o-transition:300ms cubic-bezier(0.39, 0.575, 0.565, 1);transition:300ms cubic-bezier(0.39, 0.575, 0.565, 1);}
 .growl .modal.show{opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1);}

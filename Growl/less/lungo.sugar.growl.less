@@ -23,7 +23,13 @@
 	background: none;
 	font-size: @font_size;
 	color: @font_color;
+	display:none;
+
+	&.show {
+		//display: block;
+	}
 }
+
 
 .growl.modal{
 	background-color: @growl_opacity;
@@ -41,9 +47,9 @@
 	background-color: @modal_opacity;
 	.border-radius(@modal_border_radius);
 	text-align: center;
-	
+
 	.transform(scale(0.75));
-	opacity: 0;	
+	opacity: 0;
 	transition-property: scale, opacity;
 	-webkit-transition: @keyframe @defaultTrasition;
 	   -moz-transition: @keyframe @defaultTrasition;
@@ -52,23 +58,23 @@
 }
 
 	.growl .modal.show{
-		opacity:1;	
+		opacity:1;
 		.transform(scale(1));
 	}
-	
+
 	.growl .modal .icon {
 		display: block;
 		font-size:72px;
 		font-weight: normal !important;
 		line-height: 80px;
 	}
-	
+
 	.growl .modal strong{
 		margin: 0 8px 8px;
 		display: block;
 	}
-	
-	.growl .modal small {	
+
+	.growl .modal small {
 		margin: 0 8px 8px;
 		display: block;
 		font-size: 0.8em;
@@ -82,17 +88,17 @@
 		padding-left: 10px;
 		padding-right: 10px;
 	}
-	
+
 	.growl .modal.input a {
 		margin: 6px 0 0;
 		height: 24px;
-	
+
 		display: block;
 		font-size: 14px;
 		line-height: 32px;
 		height:32px;
 	}
-	
+
 	.growl .modal.input a span {
 		left:24px;
 	}
@@ -111,7 +117,7 @@
 	}
 	*/
 	/* @end */
-	
+
 	/* @group modal.loading */
 	.growl .modal.loading span{
 		-webkit-animation: growl-loading 1s infinite;
@@ -132,13 +138,13 @@
 	height:auto;
 	left: 4px;
 	right: 4px;
-	bottom: 4px;	
+	bottom: 4px;
 	background-color: @modal_opacity;
 	.border-radius(@modal_border_radius);
 	.box-shadow(0px 0px 4px rgba(0,0,0,0.3));
 	.transform(translateY(100%));
 	.transition(all, @keyframe, @defaultTrasition);
-	opacity: 0;	
+	opacity: 0;
 	color: @font_color;
 	text-shadow: 0 1px 0px rgba(0,0,0,0.5);
 }
@@ -156,28 +162,28 @@
 		opacity: 1;
 		.transform(translateY(0%));
 	}
-	
+
 	.notify .icon {
 		margin: 6px 6px 6px 10px;
 		float:left;
 		font-size: 53px;
 		line-height: 40px;
 	}
-	
+
 	.notify strong {
 		margin: 14px 0 -12px;
 		max-height:12px;
-	
+
 		display: block;
 		overflow: hidden;
-	
+
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		font-size: 1.15em;
 		text-transform: uppercase;
 		line-height:12px;
 	}
-	
+
 	.notify small {
 		font-size: 0.9em;
 	}
