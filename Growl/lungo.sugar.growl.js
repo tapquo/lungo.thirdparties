@@ -110,13 +110,9 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
     var _showGrowlModal = function(modal) {
         var growl = lng.dom(SELECTOR.GROWL);
 
-        if (growl.style('display') === 'none') {
-            growl.show();
-        }
+        growl.style('display') === 'none' && growl.show();
 
-        if (modal) {
-            growl.addClass('modal');
-        }
+        modal && growl.addClass('modal');
     };
 
     var _animate = function(element, animate) {
