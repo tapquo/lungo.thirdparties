@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta charset="utf-8" />
+
+	<title>Lungo.Sugar.Growl by @soyjavi</title>
+
+	<link rel="stylesheet" href="../../vendor/LungoJS/lungo-1.2.BETA.min.css">
+
+	<link rel="stylesheet" href="../../vendor/LungoJS/lungo.theme.pro.css">
+</head>
+
+<body>
+    <section id="main">
+        <header data-title="Map Sugar">
+            <nav class="onleft">
+                <a href="#" id="btn-route" class="button">Route</a>
+                <a href="#" id="btn-add" class="button">Add</a>
+            </nav>
+            <a href="#" id="btn-clean" class="button red onright">clean</a>
+        </header>
+
+        <footer class="toolbar with-labels">
+            <nav>
+                <a href="#map" class="current" data-target="article" data-icon="map" data-title="Map" data-label="Mapa"></a>
+                <a href="#instructions" data-target="article" data-icon="items" data-title="Indicaciones" data-label="Indicaciones"></a>
+            </nav>
+        </footer>
+
+        <article id="map">
+        </article>
+        <article id="instructions" class="list scrollable"></article>
+    </section>
+
+
+    <script src="../../vendor/LungoJS/lungo-1.2.BETA.packed.js"></script>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="../lungo.sugar.gmap.js"></script>
+    <script src="../lungo.sugar.gmap.interface.js"></script>
+    <script src="../lungo.sugar.gmap.route.js"></script>
+    <script>
+
+        LUNGO.App.init({
+            name: 'Kitchen Sink',
+            version: '1.1',
+            resources: {
+                sections: [],
+                templates: []
+            }
+        });
+
+        var _from = { latitude: 59.32522, longitude: 18.07002 };
+        var _to = { latitude: 59.327383, longitude: 18.06747 };
+
+        LUNGO.View.Template.create('sugar-gmap-indications', '<li><div class="onright bubble pink">{{duration}}</div>{{instructions}}</li>');
+
+        LUNGO.Sugar.GMap.init({
+            el: '#map',
+            zoom: 14,
+            //type: 'HYBRID',
+            center: _from
+        });
+
+        LUNGO.dom('#btn-route').tap(function(event) {
+            var markers = {
+                from: {
+                    url: 'pushpin-red.png',
+                    size: {x: 32, y: 39},
+                    anchor: {x: 8, y: 34}
+                }/*,
+                to: {
+                    url: 'pushpin-red.png',
+                    size: {x: 32, y: 39},
+                    anchor: {x: 8, y: 34}
+                }*/
+            };
+
+            LUNGO.Sugar.GMap.Route.init(_from, _to, markers, function() {
+                var instructions = LUNGO.Sugar.GMap.Route.instructions();
+
+                LUNGO.View.Template.List.create({
+                    el: '#instructions',
+                    template: 'sugar-gmap-indications',
+                    data: instructions.steps
+                });
+                LUNGO.View.Element.count('footer nav a:last-child', instructions.steps.length);
+
+            });
+        });
+
+        LUNGO.dom('#btn-add').tap(function(event) {
+            var position = { latitude: 59.326, longitude: 18.07002 };
+
+            LUNGO.Sugar.GMap.addMarker(position, null, false);
+            LUNGO.Sugar.GMap.center(position);
+            LUNGO.Sugar.GMap.zoom(16);
+        });
+
+        LUNGO.dom('#btn-clean').tap(function(event) {
+
+            LUNGO.Sugar.GMap.zoom(14);
+            LUNGO.Sugar.GMap.clean();
+        });
+    </script>
+</body>
+</html>
