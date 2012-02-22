@@ -30,21 +30,23 @@ LUNGO.Sugar.GMap.Route = (function(lng, undefined) {
     var _that = LUNGO.Sugar.GMap;
     var _callback = null;
 
+
     /**
      *
      */
-    var init = function(from, to, markers, callback) {
+    var init = function(from, to, travel_mode, markers, callback) {
         _callback = callback || null;
+
+        _saveMarkers(from, to, markers);
 
         _instance.route = null;
         _instance.instructions = null;
-        _instance.markers.icons = markers;
         _instance.service = _instance.service || new google.maps.DirectionsService();
         _instance.service.route(
             {
                 origin: _that.Interface.LatLng(from),
                 destination: _that.Interface.LatLng(to),
-                travelMode: google.maps.TravelMode.DRIVING
+                travelMode: (travel_mode !== undefined) ? TRAVEL_MODES[travel_mode] : TRAVEL_MODES.DRIVING
             },
             function(response, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
@@ -60,6 +62,11 @@ LUNGO.Sugar.GMap.Route = (function(lng, undefined) {
     var clean = function() {
         if (_instance.renderer) {
             _instance.renderer.setMap(null);
+
+            for (var i = 0, len = _instance.markers.pointers.length; i < len; i++) {
+                _instance.markers.pointers[i].setMap(null);
+            }
+            _instance.markers.pointers = [];
         }
     };
 
@@ -109,24 +116,22 @@ LUNGO.Sugar.GMap.Route = (function(lng, undefined) {
         return steps;
     };
 
+    var _saveMarkers = function(from, to, markers) {
+        _instance.markers.icons = markers;
+        _instance.markers.from = from;
+        _instance.markers.to = to;
+    };
+
     var _drawMarkers = function() {
         if (_instance.markers.icons) {
-            _that.addMarker(
-                {
-                    latitude: _instance.instructions.start_location.Qa,
-                    longitude: _instance.instructions.start_location.Ra
-                },
-                _instance.markers.icons.from || null
-            );
-
-            _that.addMarker(
-                {
-                    latitude: _instance.instructions.end_location.Qa,
-                    longitude: _instance.instructions.end_location.Ra
-                },
-                _instance.markers.icons.to || null
-            );
+            _createMarker(_instance.markers.from, _instance.markers.icons.from);
+            _createMarker(_instance.markers.to, _instance.markers.icons.to);
         }
+    };
+
+    var _createMarker = function(position, icons) {
+        var marker = _that.addMarker(position, icons || null);
+        _instance.markers.pointers.push(marker);
     };
 
     var _applyCallback = function() {

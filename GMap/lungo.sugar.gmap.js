@@ -73,6 +73,8 @@ LUNGO.Sugar.GMap = (function(lng, undefined) {
 
             _instance_markers.push(marker);
         }
+
+        return marker;
     };
 
     var _cleanMarkers = function() {
