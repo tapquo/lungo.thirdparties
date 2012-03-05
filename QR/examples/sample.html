@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="utf-8" />
+
+    <title>Lungo.Sugar.Growl by @soyjavi</title>
+
+    <link rel="stylesheet" href="../../vendor/LungoJS/lungo-1.1.min.css">
+    <link rel="stylesheet" href="../../vendor/LungoJS/lungo.theme.default.css">
+</head>
+
+<body>
+
+    <section>
+        <header><h1 class="title">Testing QR</h1></header>
+
+        <article class="current">
+            <div class="qr"></div>
+        </article>
+    </section>
+
+    <script src="../../vendor/LungoJS/lungo-1.1.packed.js"></script>
+    <script src="../lungo.Sugar.QR.js"></script>
+    <script src="../lungo.Sugar.QR.Arrays.js"></script>
+    <script>
+        LUNGO.dom(document).ready(function() {
+            LUNGO.Sugar.QR.encode('.qr', 'http://www.tapquo.com', 1, 320);
+        });
+    </script>
+</body>
+</html>
