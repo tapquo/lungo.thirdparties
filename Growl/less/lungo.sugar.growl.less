@@ -1,8 +1,8 @@
-@import "mixins/soyjavi.less";
+@import "mixins.less";
 
 @growl_opacity: rgba(0,0,0,0.5);
 @defaultTrasition : @easeOutSine;
-@keyframe: 300ms;
+@keyframe: 250ms;
 
 @modal_opacity: rgba(0,0,0,0.75);
 @modal_size: 136px;
@@ -24,43 +24,61 @@
 	font-size: @font_size;
 	color: @font_color;
 	display:none;
-
-	&.show {
-		//display: block;
+	
+	&.modal { background-color: @growl_opacity; }
+	
+	/* @group .modal */
+	& .modal {
+    	position: relative;
+		width: @modal_size;
+		margin: -@modal_size_middle auto auto -@modal_size_middle;
+	
+		left: 50%;
+		top: 50%;
+		z-index: 1;
+		padding: 8px 0;
+		background-color: @modal_opacity;
+		.border-radius(@modal_border_radius);
+		text-align: center;
+		
+		opacity: 0;
+		.transform(translate3d(0, 100%, 0));
+		transition-property: -webkit-transform, transform, opacity;
+		-webkit-transition: @keyframe @defaultTrasition;
+		
+	    &.show {
+    		opacity: 1;
+			.transform(translate3d(0, 0%, 0));
+		}
+	    
+	    &.url {
+    		left: 0%;
+    		top: 00%;
+    		width: 280px;
+    		height: auto;
+    		margin: 64px auto 0px;
+    		padding: 0px;
+    		
+    		& .close {
+				position: absolute;
+				top: -14px;
+				right: -14px;
+    			
+    			font-size: 20px;
+    			line-height: 25px;
+    			font-weight: normal;
+    			width: 24px;
+    			height: 24px;
+    			background: #000;
+    			border-radius: 14px;
+    			border: solid 2px #fff;
+    			box-shadow: 0 0 4px black;
+			}
+		}
 	}
+	
+	/* @end */
 }
-
-
-.growl.modal{
-	background-color: @growl_opacity;
-}
-
-/* @group .modal */
-.growl .modal {
-	position: absolute;
-	width: @modal_size;
-	margin: -@modal_size_middle auto auto -@modal_size_middle;
-	padding: 8px 0;
-	left: 50%;
-	top: 50%;
-	z-index: 1;
-	background-color: @modal_opacity;
-	.border-radius(@modal_border_radius);
-	text-align: center;
-
-	.transform(scale(0.75));
-	opacity: 0;
-	transition-property: scale, opacity;
-	-webkit-transition: @keyframe @defaultTrasition;
-	   -moz-transition: @keyframe @defaultTrasition;
-         -o-transition: @keyframe @defaultTrasition;
-            transition: @keyframe @defaultTrasition;
-}
-
-	.growl .modal.show{
-		opacity:1;
-		.transform(scale(1));
-	}
 
 	.growl .modal .icon {
 		display: block;
@@ -132,7 +150,6 @@
 	}
 	*/
 	/* @end */
-/* @end */
 
 /* @group .notify */
 .notify {

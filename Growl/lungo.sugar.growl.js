@@ -33,14 +33,13 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
      *
      */
     var show = function(title, description, icon, animate, seconds, callback) {
-        _showGrowlModal(true);
+        _instance(true);
 
-        var modal = lng.dom(SELECTOR.MODAL);
-        modal.removeClass(CSS_CLASS.SHOW);
-        modal.removeClass(CSS_CLASS.INPUT);
-        modal.html('<span class="big icon ' + icon + '"></span><strong>' + title + '</strong><small>' + description + '</small>');
-        _animate(modal, animate);
-        modal.show().addClass(CSS_CLASS.SHOW);
+        var modal = _modalInstance(animate);
+        modal.html('<span class="icon ' + icon + '"></span><strong>' + title + '</strong><small>' + description + '</small>');
+        setTimeout(function() {
+            modal.addClass(CSS_CLASS.SHOW);
+        }, 100);
 
         _auto_hide(seconds, callback);
     };
@@ -59,15 +58,8 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
     /**
      *
      */
-    var loading = function(title, description) {
-        //@ToDo
-    };
-
-    /**
-     *
-     */
     var notify = function(title, description, icon, type, seconds, callback) {
-        _showGrowlModal(false);
+        _instance(false);
 
         var notify = lng.dom(SELECTOR.NOTIFY);
         if (type) {
@@ -86,7 +78,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
      *
      */
     var option = function(title, options) {
-        _showGrowlModal(true);
+        _instance(true);
 
         _options = options;
         var buttons = _createButtons(options);
@@ -98,7 +90,24 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
 
         setTimeout(function(){
             modal.addClass('show');
-        }, 300);
+        }, 100);
+    };
+
+    /**
+     *
+     */
+    var html = function(html, closable, callback) {
+        html += (closable) ? '<span class="icon close"></span>' : '';
+
+        _instance(true);
+
+        var modal = _modalInstance(false);
+        modal.html(html).addClass('url');
+        setTimeout(function() {
+            modal.addClass(CSS_CLASS.SHOW);
+        }, 100);
+
+        _auto_hide(0, callback);
     };
 
 
@@ -107,12 +116,21 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         _subscribeEvents();
     };
 
-    var _showGrowlModal = function(modal) {
+    var _instance = function(modal) {
         var growl = lng.dom(SELECTOR.GROWL);
 
         growl.style('display') === 'none' && growl.show();
-
         modal && growl.addClass('modal');
+    };
+
+    var _modalInstance = function(animate) {
+        var modal = lng.dom(SELECTOR.MODAL);
+        modal.removeClass(CSS_CLASS.SHOW);
+        modal.removeClass(CSS_CLASS.INPUT);
+
+        _animate(modal, animate);
+
+        return modal;
     };
 
     var _animate = function(element, animate) {
@@ -164,9 +182,8 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
             lng.dom(SELECTOR.NOTIFY).removeClass(CSS_CLASS.SHOW);
         });
 
-
-        lng.dom('.growl .modal a').tap(function(event) {
-            if (lng.dom(this).attr('id') !== '') {
+        lng.dom('.growl .modal.input a, .growl .modal .close').tap(function(event) {
+            if (lng.dom(this).attr('id')) {
                 id = lng.dom(this).attr('id').replace(/growl_option_/g, '');
                 setTimeout(_options[id].callback, 100);
             } else {
@@ -184,6 +201,6 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         hide: hide,
         notify: notify,
         option: option,
-        loading: loading
+        html: html
     }
 })(LUNGO);

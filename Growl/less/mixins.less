@@ -1,5 +1,63 @@
 //============================================================
 //
+// LESS CSS3 Mixins by @soyjavi
+//
+// @description CSS3 mixins for LESS projects
+// @version 1.2
+//
+//============================================================
+
+//============================================================
+// Variables
+//
+
+@white:             #fff;
+@black:				#000;
+@black-active:		#000;
+
+@grey:       		#ccc;
+@grey-active:		#b5b5b5;
+
+@red:         		#e33100;
+@red-active:        #c5280f;
+
+@lightgreen:        #91bd09;
+@lightgreen-active: #7ea41a;
+
+@green:         	#009600;
+@green-active:      #00770e;
+
+@blue:         		#237fd7;
+@blue-active:       #1a69b6;
+
+@arcticblue:        #2daebf;
+@arcticblue-active: #238e9e;
+
+@orange:         	#ff5c00;
+@orange-active:     #da4e15;
+
+@purple:         	#7b658d;
+@purple-active:     #574765;
+
+@magenta:         	#a9014b;
+@magenta-active:    #831239;
+
+@pink:         		#ff007f;
+@pink-active:       #de2870;
+
+@yellow:         	#ffb515;
+@yellow-active:     #dfa020;
+
+@twitter:        	#35cdff;
+@twitter-active:    #2bafda;
+
+@facebook:         	#3b5998;
+@facebook-active:   #2c4579;
+
+//============================================================
+
+//============================================================
+//
 // border-radius
 //
 // @param top-left-radius     :  px, em, %;
@@ -13,12 +71,12 @@
 
 .border-radius() {
 	-webkit-border-radius: @arguments;
-		-moz-border-radius: @arguments;
-		border-radius: @arguments;
+        -moz-border-radius: @arguments;
+	        border-radius: @arguments;
 
 	-webkit-background-clip: padding-box;
-		-moz-background-clip: padding;
-		background-clip: padding-box;
+        -moz-background-clip: padding;
+	        background-clip: padding-box;
 }
 
 
@@ -40,28 +98,11 @@
 
 .box-shadow() {
     -webkit-box-shadow: @arguments;
-       -moz-box-shadow: @arguments;
+        -moz-box-shadow: @arguments;
             box-shadow: @arguments;
 }
 
-.background-gradient(){
-    -webkit-box-shadow: @arguments;
-       -moz-box-shadow: @arguments;
-            box-shadow: @arguments;
-}
 
-.background-linear-gradient(@stop1: 0, @color1: #AAA, @stop2: 50% , @color2: #BBB )
-{
-    background: -webkit-gradient(linear, top left, bottom left, color-stop(@stop1, @color1), color-stop(@stop2, @color2));
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(@stop1, @color1), color-stop(@stop2, @color2));
-    
-    
-   	background: -webkit-linear-gradient(@color1 @stop1, @color2 @stop2);
-    background: -moz-linear-gradient(center bottom, @color1 @stop1, @color2 @stop2);
-    background: -o-linear-gradient(center bottom, @color1 @stop1, @color2 @stop2);
-    background: linear-gradient(center bottom, @color1 @stop1, @color2 @stop2);
-
-}
 
 //============================================================
 //
@@ -78,9 +119,8 @@
 //============================================================
 .transform() {
     -webkit-transform: @arguments;
-       -moz-transform: @arguments;
-        -ms-transform: @arguments;
-         -o-transform: @arguments;
+        -moz-transform: @arguments;
+        -o-transform: @arguments;
             transform: @arguments;
 }
 
@@ -99,10 +139,9 @@
 
 .translate() {
     -webkit-transform: translate(@arguments);
-       -moz-transform: translate(@arguments);
-        -ms-transform: translate(@arguments);
-         -o-transform: translate(@arguments);
-            transform: translate(@arguments);
+        -moz-transform: translate(@arguments);
+        -o-transform: translate(@arguments);
+		    transform: translate(@arguments);
 }
 
 
@@ -117,11 +156,11 @@
 // @see http://www.w3.org/TR/css3-2d-transforms/
 //
 //============================================================
+
 .scale() {
     -webkit-transform: scale(@arguments);
-       -moz-transform: scale(@arguments);
-        -ms-transform: scale(@arguments);
-         -o-transform: scale(@arguments);
+        -moz-transform: scale(@arguments);
+        -o-transform: scale(@arguments);
             transform: scale(@arguments);
 }
 
@@ -136,13 +175,15 @@
 // @see http://www.w3.org/TR/css3-2d-transforms/
 //
 //============================================================
+
 .rotate() {
     -webkit-transform: rotate(@arguments);
-       -moz-transform: rotate(@arguments);
-        -ms-transform: rotate(@arguments);
-         -o-transform: rotate(@arguments);
+        -moz-transform: rotate(@arguments);
+        -o-transform: rotate(@arguments);
             transform: rotate(@arguments);
 }
+
+
 
 //============================================================
 //
@@ -153,13 +194,15 @@
 // @see http://www.w3.org/TR/css3-3d-transforms/
 //
 //============================================================
+
 .backface-visibility() {
     -webkit-backface-visibility: @arguments;
-       -moz-backface-visibility: @arguments;
-        -ms-backface-visibility: @arguments;
-         -o-backface-visibility: @arguments;
+        -moz-backface-visibility: @arguments;
+        -o-backface-visibility: @arguments;
             backface-visibility: @arguments;
 }
+
+
 
 //============================================================
 //
@@ -176,12 +219,45 @@
 
 .transition() {
     -webkit-transition: @arguments;
-       -moz-transition: @arguments;
-        -ms-transition: @arguments;
-         -o-transition: @arguments;
+        -moz-transition: @arguments;
+        -o-transition: @arguments;
             transition: @arguments;
 }
 
+
+//============================================================
+//
+// transition
+//
+// @param properties          :  all, left, opacity, etc;
+// @param duration            :  1s, 1000ms;
+// @param delay               :  1s, 1000ms;
+// @param easing              :  linear, ease-in-out, etc;
+//
+// @see http://www.w3.org/TR/css3-transitions/
+//
+//============================================================
+
+.user-select() {
+	-webkit-user-select: @arguments;
+        -moz-user-select: @arguments;
+        -o-user-select: @arguments;
+            user-select: @arguments;
+}
+
+
+.background-linear-gradient(@stop1: 0, @color1: #AAA, @stop2: 50% , @color2: #BBB )
+{
+    background: -webkit-gradient(linear, top left, bottom left, color-stop(@stop1, @color1), color-stop(@stop2, @color2));
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(@stop1, @color1), color-stop(@stop2, @color2));
+
+
+    background: -webkit-linear-gradient(@color1 @stop1, @color2 @stop2);
+    background: -moz-linear-gradient(center bottom, @color1 @stop1, @color2 @stop2);
+    background: -o-linear-gradient(center bottom, @color1 @stop1, @color2 @stop2);
+    background: linear-gradient(center bottom, @color1 @stop1, @color2 @stop2);
+
+}
 
 //============================================================
 //
@@ -230,4 +306,3 @@
 @easeInSine      :  cubic-bezier(0.470, 0.000, 0.745, 0.715);
 @easeOutSine     :  cubic-bezier(0.390, 0.575, 0.565, 1.000);
 @easeInOutSine   :  cubic-bezier(0.445, 0.050, 0.550, 0.950);
-/* @end */
