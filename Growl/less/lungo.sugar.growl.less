@@ -24,15 +24,15 @@
 	font-size: @font_size;
 	color: @font_color;
 	display:none;
-	
+
 	&.modal { background-color: @growl_opacity; }
-	
+
 	/* @group .modal */
 	& .modal {
     	position: relative;
 		width: @modal_size;
 		margin: -@modal_size_middle auto auto -@modal_size_middle;
-	
+
 		left: 50%;
 		top: 50%;
 		z-index: 1;
@@ -40,17 +40,17 @@
 		background-color: @modal_opacity;
 		.border-radius(@modal_border_radius);
 		text-align: center;
-		
+
 		opacity: 0;
 		.transform(translate3d(0, 100%, 0));
 		transition-property: -webkit-transform, transform, opacity;
 		-webkit-transition: @keyframe @defaultTrasition;
-		
+
 	    &.show {
     		opacity: 1;
 			.transform(translate3d(0, 0%, 0));
 		}
-	    
+
 	    &.url {
     		left: 0%;
     		top: 00%;
@@ -58,12 +58,12 @@
     		height: auto;
     		margin: 64px auto 0px;
     		padding: 0px;
-    		
+
     		& .close {
 				position: absolute;
 				top: -14px;
 				right: -14px;
-    			
+
     			font-size: 20px;
     			line-height: 25px;
     			font-weight: normal;
@@ -76,7 +76,7 @@
 			}
 		}
 	}
-	
+
 	/* @end */
 }
 
@@ -109,18 +109,20 @@
 
 	.growl .modal.input a {
 		margin: 6px 0 0;
-		height: 24px;
-
+		height: 32px;
 		display: block;
 		font-size: 14px;
 		line-height: 32px;
-		height:32px;
+		font-weight: bold;
 	}
 
 	.growl .modal.input a .icon{
-		left: 24px;
+		left: 4px;
+		float: left;
+		margin-right: -22px;
 		font-size: 24px;
-		line-height: 31px;
+		line-height: 28px;
+		font-weight: normal !important;
 	}
 	/* @end */
 
