@@ -10,6 +10,11 @@
 
 LUNGO.Sugar.GMap = (function(lng, undefined) {
 
+    var DEFAULT_OPTIONS_GMAPS_STATIC = {
+        sensor: false,
+        mobile: true
+    };
+    var GMAPS_STATIC_URL = 'http://maps.google.com/maps/api/staticmap'
     var _instance = null;
     var _instance_markers = [];
 
@@ -77,6 +82,27 @@ LUNGO.Sugar.GMap = (function(lng, undefined) {
         return marker;
     };
 
+    /**
+     *
+     */
+    var image = function(options) {
+        var element = lng.dom(options.el);
+
+        if (element.length > 0) {
+            var options = lng.Core.mix(DEFAULT_OPTIONS_GMAPS_STATIC, options);
+
+            var environment = $$.environment();
+            options.size = environment.screen.width + 'x' + environment.screen.height;
+
+            options.center = options.center.latitude + ',' + options.center.longitude;
+            options.markers = options.center;
+            delete options.el;
+
+            var url = GMAPS_STATIC_URL + $$.serializeParameters(options);
+            element.html('<img src="' + url + '"/>');
+        }
+    };
+
     var _cleanMarkers = function() {
         for (var i = 0, len = _instance_markers.length; i < len; i++) {
             _instance_markers[i].setMap(null);
@@ -86,6 +112,7 @@ LUNGO.Sugar.GMap = (function(lng, undefined) {
 
     return {
         init: init,
+        image: image,
         instance: instance,
         clean: clean,
         center: center,
