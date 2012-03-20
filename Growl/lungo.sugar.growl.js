@@ -3,7 +3,7 @@
  *
  * @namespace LUNGO.Sugar
  * @class Growl
- * @version 1.1
+ * @version 1.2
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
@@ -62,9 +62,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         _instance(false);
 
         var notify = lng.dom(SELECTOR.NOTIFY);
-        if (type) {
-            notify.addClass(type);
-        }
+        notify.addClass(type || 'info');
         notify.html('<span class="icon ' + icon + '"></span><strong>' + title + '</strong><br/><small>' + description + '</small>');
 
         setTimeout(function() {

@@ -10,7 +10,7 @@
 @modal_border_radius: 2px;
 
 @notify_font_color: #555;
-@notify_font_shadow: 0 1px 0px rgba(255,255,255,0.75);
+@notify_font_shadow: 0 1px 0px #fff;
 
 @font_color: #fff;
 @font_size: 95%;
@@ -157,43 +157,48 @@
 .notify {
 	position: absolute;
 	height:auto;
-	left: 4px;
-	right: 4px;
-	bottom: 4px;
+	top:  0px;
+	left:  0px;
+	right: 0px;
 	background-color: @modal_opacity;
-	.border-radius(@modal_border_radius);
-	.box-shadow(0px 0px 4px rgba(0,0,0,0.3));
-	.transform(translateY(100%));
+	
+	.box-shadow(0px 0px 3px rgba(0,0,0,0.5));
+	.transform(translateY(-100%));
+	
 	.transition(all, @keyframe, @defaultTrasition);
 	opacity: 0;
 	color: @font_color;
-	text-shadow: 0 1px 0px rgba(0,0,0,0.5);
-}
-
-.notify.info { .background-linear-gradient(0, #e8e8e8 , 75% , #c0c0c0 );}
-.notify.error { .background-linear-gradient(0, #e75d65 , 75% , #ac000f ); }
-.notify.alert { .background-linear-gradient(0, #f5dd42 , 75% , #e8a400 ); }
-.notify.success { .background-linear-gradient(0, #95ee6b, 75%, #4d970c);}
-	.notify.info, .notify.alert{
+	text-shadow: 0 1px 0px rgba(0,0,0,0.1);
+	
+	&.info { 
+		.background-linear-gradient(0, #e8e8e8 , 50% , #f6f6f6 );
 		color: @notify_font_color;
 		text-shadow: @notify_font_shadow;
 	}
-
-	.notify.show {
-		opacity: 1;
+	&.error { .background-linear-gradient(0, #FF4444 , 90% , #CC0000 ); }
+	&.alert { .background-linear-gradient(0, #FFBB33 , 90% , #FF8800 ); }
+	&.success { .background-linear-gradient(0, #99CC00, 90%, #669900); }
+	
+	&.show {
+    	opacity: 1;
 		.transform(translateY(0%));
 	}
+	
+	& .icon, & img {
+    	float:left;
+		height: 42px;
+		width: 42px;
+		margin-right: 4px;
+		
+		border-right: 1px solid rgba(0,0,0,0.1);
 
-	.notify .icon {
-		margin: 6px 6px 6px 10px;
-		float:left;
-		font-size: 53px;
-		line-height: 40px;
+		font-size: 36px;
+		line-height: 42px;
+		text-align: center;
 	}
-
-	.notify strong {
-		margin: 14px 0 -12px;
-		max-height:12px;
+	
+	& strong {
+    	margin: 9px 0 -14px;
 
 		display: block;
 		overflow: hidden;
@@ -201,11 +206,13 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		font-size: 1.15em;
-		text-transform: uppercase;
 		line-height:12px;
 	}
-
-	.notify small {
-		font-size: 0.9em;
+	
+	& small {
+    	font-size: 11px;
+		line-height: 12px;
+		font-weight: bold;
 	}
+}
 /* @end */
