@@ -1,12 +1,14 @@
-@import "Lungo.theme.default.font.css";
-/** 
+/**
  * Stylesheet
- * 
+ *
  * @namespace LUNGO.Theme
  * @class Default
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
+
+@import "lungo.theme.default.font.css";
+
 .app {
   background: #000000;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
