@@ -12,7 +12,7 @@ clear
 echo -e "\033[0m"============================ QUOJS COMPILER ============================
 
 #Simple Sugars
-SUGARS=(growl language sound qr)
+SUGARS=(growl language sound qr talk)
 for file in "${SUGARS[@]}"
 do
     echo -e "\033[32m  [BUILD]: lungo.sugar."$file".min.js\033[0m"

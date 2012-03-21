@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta charset="utf-8" />
+	<title>Lungo.Sugar.Talk by @soyjavi</title>
+	<link rel="stylesheet" href="../../vendor/LungoJS/lungo-1.2.min.css">
+	<link rel="stylesheet" href="../../vendor/LungoJS/lungo.theme.default.css">
+    <link rel="stylesheet" href="../lungo.sugar.talk.css">
+</head>
+
+<body>
+    <section id="main">
+        <header data-title="Chat">
+            <nav class="onright">
+                <a href="#" class="button">Append</a>
+                <a href="#" class="button green">Me</a>
+            </nav>
+        </header>
+
+        <article id="chat" class="talk list  scrollable"></article>
+    </section>
+
+
+    <script src="../../vendor/LungoJS/lungo-1.2.packed.js"></script>
+    <script src="../lungo.sugar.talk.js"></script>
+    <script>
+
+        LUNGO.App.init({
+            name: 'Kitchen Sink',
+            version: '1.2',
+            resources: {
+                sections: [],
+                templates: []
+            }
+        });
+
+        var chat = [];
+
+        chat.push({
+            thumb: 'http://tapquo.com/assets/images/team-javi.jpg',
+            who: 'Javi',
+            message: 'Zorionak!!! ya te queda menos para los 30!!',
+            timestamp: '18 Marzo',
+            me: 'me'
+        });
+
+        chat.push({
+            thumb: 'http://tapquo.com/assets/images/team-aitor.jpg',
+            who: 'Aitor',
+            message: 'Gracias',
+            timestamp: '18 Marzo'
+        });
+
+        chat.push({
+            thumb: 'http://tapquo.com/assets/images/team-aitor.jpg',
+            who: 'Aitor',
+            message: 'Luego vienes a galda para ir a Andago?',
+            timestamp: '8:23 AM'
+        });
+
+        chat.push({
+            thumb: 'http://tapquo.com/assets/images/team-aitor.jpg',
+            who: 'Aitor',
+            message: 'Si quieres quedamos a las 15h en casa',
+            timestamp: '8:25 AM'
+        });
+
+        chat.push({
+            thumb: 'http://tapquo.com/assets/images/team-javi.jpg',
+            who: 'Javi',
+            message: 'ok',
+            timestamp: '8:30 AM',
+            me: 'me'
+        });
+
+        chat.push({
+            thumb: 'http://tapquo.com/assets/images/team-javi.jpg',
+            who: 'Javi',
+            message: 'Cojo el bus de las 14:30',
+            timestamp: '8:31 AM',
+            me: 'me'
+        });
+
+        chat.push({
+            thumb: 'http://tapquo.com/assets/images/team-aitor.jpg',
+            who: 'Aitor',
+            message: 'ok',
+            timestamp: '8:31 AM'
+        });
+
+        LUNGO.Sugar.Talk.create('#chat', chat);
+
+
+        LUNGO.dom('.button').tap(function(event) {
+            LUNGO.Sugar.Talk.append('#chat', {
+                thumb: 'http://tapquo.com/assets/images/team-janire.jpg',
+                who: 'Aitor',
+                message: 'Yo tambien voy!!!',
+                timestamp: '8:31 AM'
+            });
+        });
+
+         LUNGO.dom('.button.green').tap(function(event) {
+            LUNGO.Sugar.Talk.append('#chat', {
+                thumb: 'http://tapquo.com/assets/images/team-javi.jpg',
+                who: 'Javi',
+                message: 'LungoJS 1.2!!!',
+                timestamp: '8:31 AM',
+                me: 'me'
+            });
+        });
+
+    </script>
+</body>
+</html>
