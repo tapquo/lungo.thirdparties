@@ -9,6 +9,16 @@
 .growl .modal.input a .icon{left:4px;float:left;margin-right:-22px;font-size:24px;line-height:28px;font-weight:normal !important;}
 .growl .modal.working span{-webkit-animation:growl-working 1s infinite;}
 .growl .modal.loading span{-webkit-animation:growl-loading 1s infinite;}
+@-webkit-keyframes growl-working {
+    0% {opacity: 1; }
+    50% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@-webkit-keyframes growl-loading {
+    0% { -webkit-transform: rotate(0deg); }
+    50% {opacity: 0;}
+    100% {opacity: 1;}
+}
 .notify{position:absolute;height:auto;top:0px;left:0px;right:0px;background-color:rgba(0, 0, 0, 0.75);-webkit-box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);-moz-box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);-webkit-transform:translatey(-100%);-moz-transform:translatey(-100%);-o-transform:translatey(-100%);transform:translatey(-100%);-webkit-transition:all 250ms cubic-bezier(0.39, 0.575, 0.565, 1);-moz-transition:all 250ms cubic-bezier(0.39, 0.575, 0.565, 1);-o-transition:all 250ms cubic-bezier(0.39, 0.575, 0.565, 1);transition:all 250ms cubic-bezier(0.39, 0.575, 0.565, 1);opacity:0;color:#ffffff;text-shadow:0 1px 0px rgba(0, 0, 0, 0.1);}.notify.info{background:-webkit-gradient(linear, top left, bottom left, color-stop(0, #e8e8e8), color-stop(50%, #f6f6f6));background:-webkit-gradient(linear, left bottom, left top, color-stop(0, #e8e8e8), color-stop(50%, #f6f6f6));background:-webkit-linear-gradient(#e8e8e8 0, #f6f6f6 50%);background:-moz-linear-gradient(center bottom, #e8e8e8 0, #f6f6f6 50%);background:-o-linear-gradient(center bottom, #e8e8e8 0, #f6f6f6 50%);background:linear-gradient(center bottom, #e8e8e8 0, #f6f6f6 50%);color:#555555;text-shadow:0 1px 0px #ffffff;}
 .notify.error{background:-webkit-gradient(linear, top left, bottom left, color-stop(0, #ff4444), color-stop(90%, #cc0000));background:-webkit-gradient(linear, left bottom, left top, color-stop(0, #ff4444), color-stop(90%, #cc0000));background:-webkit-linear-gradient(#ff4444 0, #cc0000 90%);background:-moz-linear-gradient(center bottom, #ff4444 0, #cc0000 90%);background:-o-linear-gradient(center bottom, #ff4444 0, #cc0000 90%);background:linear-gradient(center bottom, #ff4444 0, #cc0000 90%);}
 .notify.alert{background:-webkit-gradient(linear, top left, bottom left, color-stop(0, #ffbb33), color-stop(90%, #ff8800));background:-webkit-gradient(linear, left bottom, left top, color-stop(0, #ffbb33), color-stop(90%, #ff8800));background:-webkit-linear-gradient(#ffbb33 0, #ff8800 90%);background:-moz-linear-gradient(center bottom, #ffbb33 0, #ff8800 90%);background:-o-linear-gradient(center bottom, #ffbb33 0, #ff8800 90%);background:linear-gradient(center bottom, #ffbb33 0, #ff8800 90%);}
