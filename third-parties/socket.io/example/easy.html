@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+	<title> Easy WS test </title>
+	<script src="../lib/socket.io.min.js"></script>
+	<script>
+		window.onload = function(){
+			var socket = io.connect("http://192.168.1.46:3000/");
+			socket.on("answer", function(data){
+				alert(data);
+			});
+			
+			socket.emit("question", "HOLA");
+		};
+	</script>
+</head>
+<body>
+	Hello
+</body>
+</html>
