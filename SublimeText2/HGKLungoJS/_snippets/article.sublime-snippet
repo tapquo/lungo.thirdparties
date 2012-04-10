@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+<article id="${1:article-1}" class="${2:}" data-search="${3:blue}">
+	${4:content}
+</article>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>lngarticle</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.lungojs</scope>
+</snippet>
