@@ -1,5 +1,5 @@
 /**
- * Growl Notification system in CSS3
+ * Base 64
  *
  * @namespace LUNGO.Sugar
  * @class Base64
