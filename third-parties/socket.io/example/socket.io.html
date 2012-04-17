@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="utf-8" />
+
+    <title>Lungo.Sugar.Socket_IO by @bvaldivielso</title>
+
+    <link rel="stylesheet" href="../../../vendor/LungoJS/lungo-1.2.min.css">
+    <link rel="stylesheet" href="../../../vendor/LungoJS/lungo.theme.default.css">
+</head>
+
+<body>
+
+    <section>
+        <header><h1 class="title">Testing Socket.io</h1></header>
+        <article></article>
+        <footer></footer>
+    </section>
+
+     <script src="../../../vendor/LungoJS/lungo-1.2.packed.js"></script>
+    <script src="../lib/socket.io.min.js"></script> 
+    <script src="../lungo.sugar.socket.io.js"></script>
+    <script>
+    	var SOCKET_IO_SERVERNAME = "http://127.0.0.1:3000"; // You might change this, look server.js
+    	LUNGO.App.init({
+    		name : "Socket.io sugar test",
+    		version : "0.1"
+    	});
+    
+        LUNGO.dom(document).ready(function(){
+        	var sio = LUNGO.Sugar.Socket_IO;
+            sio.connect(SOCKET_IO_SERVERNAME); 
+            
+            sio.on("answer", function(data){
+            	alert(data);
+            }); 
+            
+            sio.emit("question", "This text has been sent to the server, and back to the client");
+        });
+    </script>
+</body>
+</html>
