@@ -33,19 +33,19 @@ LUNGO.Sugar.SimpleGallery = (function(lng, undefined) {
     var MARKUP_SIMPLEGALLERY = '<div class="simpleGallery"></div>';
     // Init Method
     var _init = function() {
-        $(SELECTOR.BODY).append(MARKUP_SIMPLEGALLERY);
+        $$(SELECTOR.BODY).append(MARKUP_SIMPLEGALLERY);
         _subscribeEvents();
     };
     // Show Method
     var show = function(simpleGallery) {
-        var gallery = $(SELECTOR.SIMPLEGALLERY);                                // Get the gallery container
+        var gallery = $$(SELECTOR.SIMPLEGALLERY);                                // Get the gallery container
         for ( var i = 0, len = simpleGallery.imgs.length; i < len; i++ ) {      // Create the img tags and populate the gallery
             var img = document.createElement('img');
             img.src = simpleGallery.imgs[i];
             img.setAttribute('class', 'inactive');
             gallery.append(img);
         }
-        _imgs = $(SELECTOR.IMGS);
+        _imgs = $$(SELECTOR.IMGS);
         _imgsCount = _imgs.length;
         _currentIndex = 0;
         _texts = simpleGallery.text;
@@ -60,28 +60,28 @@ LUNGO.Sugar.SimpleGallery = (function(lng, undefined) {
             gallery.append(textContainer);
             var text = document.createElement('p');
             text.innerHTML = simpleGallery.text[_currentIndex];
-            $(textContainer).append(text);
+            $$(textContainer).append(text);
         }
-        $(_imgs[_currentIndex]).attr('class', CSS_CLASS.ANIMATED);              // Set the active image
+        $$(_imgs[_currentIndex]).attr('class', CSS_CLASS.ANIMATED);              // Set the active image
         _transition = simpleGallery.transition;
         if ( simpleGallery.slideshow == 'auto' ) {
             setInterval(_slideshow, 2000);
         }
     };
     function _slideshow() {
-        $(SELECTOR.SIMPLEGALLERY).trigger('click'); 
+        $$(SELECTOR.SIMPLEGALLERY).trigger('click'); 
     }
     // Register the events
     var _subscribeEvents = function() {
-        $(SELECTOR.SIMPLEGALLERY).bind('click', function() {
-            $(_imgs[_currentIndex]).attr('class', 'inactive');
+        $$(SELECTOR.SIMPLEGALLERY).bind('click', function() {
+            $$(_imgs[_currentIndex]).attr('class', 'inactive');
             if ( _currentIndex == _imgs.length - 1 ) {
                 _currentIndex = 0;    
             } else {
                 _currentIndex++;
             }
-            $(_imgs[_currentIndex]).attr('class', 'animated ' + _transition);
-            $('.textContainer p')[0].innerHTML = _texts[_currentIndex];
+            $$(_imgs[_currentIndex]).attr('class', 'animated ' + _transition);
+            $$('.textContainer p')[0].innerHTML = _texts[_currentIndex];
         });
     };
     _init();    // Initializes the sugar
