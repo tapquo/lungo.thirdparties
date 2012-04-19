@@ -1,6 +1,6 @@
-/** 
+/**
  * Player audio files (.mp3, .wav and .ogg)
- * 
+ *
  * @namespace LUNGO.Sugar
  * @class Sound
  *
@@ -20,7 +20,7 @@ LUNGO.Sugar.Sound = (function(lng, undefined) {
      */
     var background = function(source) {
         if (source) {
-            _setSourceAndPlay(_sound, source);
+            _setSourceAndPlay(_background, source);
             _background.addEventListener('ended', function(){
                 this.currentTime = 0;
             }, false);
