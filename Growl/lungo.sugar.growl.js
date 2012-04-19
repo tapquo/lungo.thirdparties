@@ -166,6 +166,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
     var _hide_children = function() {
         _hide_child(SELECTOR.MODAL);
         _hide_child(SELECTOR.NOTIFY);
+        $(SELECTOR.NOTIFY).attr("class", "notify");
     };
 
     var _hide_child = function(selector) {
