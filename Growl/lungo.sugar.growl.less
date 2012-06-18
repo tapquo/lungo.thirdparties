@@ -1,0 +1,263 @@
+@import "mixins.less";
+
+@growl_opacity: rgba(0,0,0,0.5);
+@defaultTrasition : @easeOutSine;
+@keyframe: 250ms;
+
+@modal_opacity: rgba(0,0,0,0.75);
+@modal_size: 136px;
+@modal_size_middle: 68px;
+@modal_border_radius: 2px;
+
+@notify_font_color: #555;
+@notify_font_shadow: 0 1px 0px #fff;
+
+@font_color: #fff;
+@font_size: 95%;
+
+.growl {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background: none;
+    font-size: @font_size;
+    color: @font_color;
+    display:none;
+
+    &.modal {
+    //    background-color: @growl_opacity;
+    }
+
+    /* @group .modal */
+    & .modal {
+        position: relative;
+        width: @modal_size;
+        margin: -@modal_size_middle auto auto -@modal_size_middle;
+
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        padding: 8px 0;
+        background-color: @modal_opacity;
+        .border-radius(@modal_border_radius);
+        text-align: center;
+
+        opacity: 0;
+        .transform(translate3d(0, 100%, 0));
+        transition-property: -webkit-transform, transform, opacity;
+        -webkit-transition: @keyframe @defaultTrasition;
+
+        &.show {
+            opacity: 1;
+            .transform(translate3d(0, 0%, 0));
+        }
+
+        &.url {
+            left: 0%;
+            top: 00%;
+            width: 280px;
+            height: auto;
+            margin: 64px auto 0px;
+            padding: 0px;
+
+            & .multiply, & .close {
+                position: absolute;
+                top: -14px;
+                right: -14px;
+
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: normal;
+                width: 24px;
+                height: 24px;
+                background: #000;
+                border-radius: 14px;
+                border: solid 2px #fff;
+                box-shadow: 0 0 4px black;
+            }
+        }
+
+        &.confirm {
+            width: 100%;
+            left: 0;
+            margin: 0;
+            top: 43px;
+            background: #333;
+            .border-radius(0px);
+
+            & .message {
+                margin: 10px;
+                height: 36px;
+            }
+            & .icon {
+                font-size: 32px;
+                line-height: 32px;
+                float: left;
+            }
+
+            & small {
+                float: left;
+            }
+            & strong {
+                float: left;
+                text-shadow: 0 1px 1px black;
+                margin: 0;
+            }
+
+            & hr {
+                height: 1px;
+                background: rgba(0,0,0,0.75);
+                .box-shadow(0 1px 0 rgba(255,255,255,0.25));
+                display: block;
+                margin: 0px 10px 10px 10px;
+            }
+
+            & .button {
+                &:first-child {float: left;}
+            }
+             & .button {
+                &:last-child {float: right;}
+            }
+        }
+    }
+
+    /* @end */
+}
+
+    .growl .modal .icon {
+        display: block;
+        font-size:72px;
+        font-weight: normal !important;
+        line-height: 80px;
+    }
+
+    .growl .modal strong{
+        margin: 0 8px 8px;
+        display: block;
+    }
+
+    .growl .modal small {
+        margin: 0 8px 8px;
+        display: block;
+        font-size: 0.8em;
+        font-weight: normal;
+    }
+
+    /* @group modal.input */
+    .growl .modal.input {
+        width: 224px !important;
+        margin: -@modal_size_middle auto auto -122px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .growl .modal.input a {
+        margin: 6px 0 0;
+        height: 32px;
+        display: block;
+        font-size: 14px;
+        line-height: 32px;
+        font-weight: bold;
+    }
+
+    .growl .modal.input a .icon{
+        left: 4px;
+        float: left;
+        margin-right: -22px;
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: normal !important;
+    }
+    /* @end */
+
+
+    /* @group modal.working */
+    .growl .modal.working span{
+        -webkit-animation: growl-working 1s infinite;
+    }
+    /*
+    @-webkit-keyframes growl-working {
+        0% {opacity: 1;}
+        50% {opacity: 0;}
+        100% {opacity: 1;}
+    }
+    */
+    /* @end */
+
+    /* @group modal.loading */
+    .growl .modal.loading span{
+        -webkit-animation: growl-loading 1s infinite;
+    }
+    /*
+    @-webkit-keyframes growl-working {
+        0% {opacity: 1;}
+        50% {opacity: 0;}
+        100% {opacity: 1;}
+    }
+    */
+    /* @end */
+
+/* @group .notify */
+.notify {
+    position: absolute;
+    height:auto;
+    top:  0px;
+    left:  0px;
+    right: 0px;
+    background-color: @modal_opacity;
+
+    .box-shadow(0px 0px 3px rgba(0,0,0,0.5));
+    .transform(translateY(-100%));
+
+    .transition(all, @keyframe, @defaultTrasition);
+    opacity: 0;
+    color: @font_color;
+    text-shadow: 0 1px 0px rgba(0,0,0,0.1);
+
+    &.info {
+        .linear-gradient(0, #e8e8e8 , 50% , #f6f6f6 );
+        color: @notify_font_color;
+        text-shadow: @notify_font_shadow;
+    }
+    &.error { .linear-gradient(0, #FF4444 , 90% , #CC0000 ); }
+    &.alert { .linear-gradient(0, #FFBB33 , 90% , #FF8800 ); }
+    &.success { .linear-gradient(0, #99CC00, 90%, #669900); }
+
+    &.show {
+        opacity: 1;
+        .transform(translateY(0%));
+    }
+
+    & .icon, & img {
+        float:left;
+        height: 42px;
+        width: 42px;
+        margin-right: 4px;
+
+        border-right: 1px solid rgba(0,0,0,0.1);
+
+        font-size: 36px;
+        line-height: 42px;
+        text-align: center;
+    }
+
+    & strong {
+        margin: 9px 0 -14px;
+
+        display: block;
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 1.15em;
+        line-height:12px;
+    }
+
+    & small {
+        font-size: 11px;
+        line-height: 12px;
+        font-weight: bold;
+    }
+}
+/* @end */

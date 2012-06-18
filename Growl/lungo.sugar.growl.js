@@ -9,7 +9,9 @@
  */
 
 LUNGO.Sugar.Growl = (function(lng, undefined) {
+
     var _options = [];
+    var _el = null;
 
     var SELECTOR = {
         BODY: 'body',
@@ -17,14 +19,14 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         MODAL: '.growl .modal',
         NOTIFY: '.growl .notify',
         MODAL_HREF: '.growl .modal a'
-    }
+    };
 
     var CSS_CLASS = {
         VISIBLE: 'visible',
         SHOW: 'show',
         WORKING: 'working',
         INPUT: 'input'
-    }
+    };
 
     var CALLBACK_HIDE = 'LUNGO.Sugar.Growl.hide()';
     var MARKUP_GROWL = '<div class="growl"><div class="modal"></div><div class="notify"></div></div>';
@@ -51,7 +53,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         _hide_children();
 
         setTimeout(function() {
-            lng.dom(SELECTOR.GROWL).style('display', 'none');
+            _el.style('display', 'none');
         }, 300);
     };
 
@@ -95,7 +97,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
      *
      */
     var html = function(html, closable, callback) {
-        html += (closable) ? '<span class="icon close"></span>' : '';
+        html += (closable) ? '<span class="icon multiply"></span>' : '';
 
         _instance(true);
 
@@ -108,14 +110,22 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         _auto_hide(0, callback);
     };
 
+    /**
+     *
+     */
+    var confirm = function(title, description, icon, label_confirm, callback) {
+        var modal = 1;
+    };
 
     var _init = function() {
         lng.dom(SELECTOR.BODY).append(MARKUP_GROWL);
+        _el = lng.dom(SELECTOR.GROWL);
+
         _subscribeEvents();
     };
 
     var _instance = function(modal) {
-        var growl = lng.dom(SELECTOR.GROWL);
+        var growl = _el;
 
         growl.style('display') === 'none' && growl.show();
         modal && growl.addClass('modal');
@@ -144,7 +154,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         var buttons = '';
         for (var i = 0, len = options.length; i < len; i++) {
             buttons += _option_button(options[i].color, 'growl_option_' + i, options[i].icon, options[i].name);
-        };
+        }
 
         return buttons;
     };
@@ -180,7 +190,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
             lng.dom(SELECTOR.NOTIFY).removeClass(CSS_CLASS.SHOW);
         });
 
-        lng.dom('.growl .modal.input a, .growl .modal .close').tap(function(event) {
+        lng.dom('.growl .modal.input a, .growl .modal .multiply').tap(function(event) {
             if (lng.dom(this).attr('id')) {
                 id = lng.dom(this).attr('id').replace(/growl_option_/g, '');
                 setTimeout(_options[id].callback, 100);
@@ -199,6 +209,8 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         hide: hide,
         notify: notify,
         option: option,
-        html: html
-    }
+        html: html,
+        confirm: confirm
+    };
+
 })(LUNGO);
