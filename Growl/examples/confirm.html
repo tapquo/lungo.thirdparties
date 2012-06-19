@@ -8,22 +8,9 @@
 
     <title>Lungo.Sugar.Growl by @soyjavi</title>
 
-    <link rel="stylesheet" href="../../vendor/LungoJS/lungo-2.0.min.css">
+    <link rel="stylesheet" href="../../vendor/LungoJS/lungo.css">
     <link rel="stylesheet" href="../../vendor/LungoJS/lungo.theme.default.css">
     <link rel="stylesheet" href="../lungo.sugar.growl.css">
-
-    <style>
-        @-webkit-keyframes growl-working {
-            0% {opacity: 1; }
-            50% {opacity: 0;}
-            100% {opacity: 1;}
-        }
-        @-webkit-keyframes growl-loading {
-            0% { -webkit-transform: rotate(0deg); }
-            50% {opacity: 0;}
-            100% {opacity: 1;}
-        }
-    </style>
 </head>
 
 <body>
@@ -34,31 +21,32 @@
         <footer></footer>
     </section>
 
-    <div class="growl modal" style="display: block; ">
-        <div class="modal confirm show" style="display: block; ">
-           <div class="message">
-
-                <span class="icon calendar"></span>
-                <strong>New invitation: lasergames</strong>
-                <br/>
-                <small>from Hayden Pannietere</small>
-            </div>
-            <hr/>
-            <a href="#" class="button green" data-icon="calendar">Accept Invite</a>
-            <a href="#" class="button grey" data-icon="cancel">Ignore Invite</a>
-
-        </div>
-    </div>
-
-    <script src="../../vendor/LungoJS/lungo-2.0.packed.js"></script>
+    <script src="../../vendor/LungoJS/lungo.js"></script>
     <script src="../lungo.sugar.growl.js"></script>
     <script>
         LUNGO.dom(document).ready(function() {
             var html = '<img style="width:280px;" src="http://b.vimeocdn.com/ps/257/047/2570471_300.jpg"><a href="#" class="button big red">Aceptar</a>';
-            return true;
-            LUNGO.Sugar.Growl.html(html, true, function() {
-                alert('yeahh!');
-            });
+
+
+            var options = {
+                title: 'Hola mundo',
+                description: 'prueba',
+                icon: 'user',
+                accept: {
+                    label: 'Enviar solicitud',
+                    color: 'blue',
+                    icon: 'check',
+                    callback: function(){alert(1)}
+                },
+                cancel: {
+                    label: 'Cancelar',
+                    color: 'red',
+                    icon: 'check'
+                    //callback: function(){alert(2)}
+                }
+            };
+
+            LUNGO.Sugar.Growl.confirm(options);
         });
     </script>
 </body>

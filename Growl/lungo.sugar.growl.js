@@ -3,7 +3,7 @@
  *
  * @namespace LUNGO.Sugar
  * @class Growl
- * @version 1.2
+ * @version 2.0
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
@@ -12,6 +12,9 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
 
     var _options = [];
     var _el = null;
+    var _window = null;
+
+    var DELAY_TIME = 1;
 
     var SELECTOR = {
         BODY: 'body',
@@ -21,7 +24,8 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         MODAL_HREF: '.growl .modal a'
     };
 
-    var CSS_CLASS = {
+    var STYLE = {
+        MODAL: 'modal',
         VISIBLE: 'visible',
         SHOW: 'show',
         WORKING: 'working',
@@ -29,143 +33,92 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
     };
 
     var CALLBACK_HIDE = 'LUNGO.Sugar.Growl.hide()';
-    var MARKUP_GROWL = '<div class="growl"><div class="modal"></div><div class="notify"></div></div>';
+    var MARKUP_GROWL = '<div class="growl"><div class="window"></div></div>';
 
     /**
      *
      */
     var show = function(title, description, icon, animate, seconds, callback) {
-        _instance(true);
+        _new_instance(true);
 
-        var modal = _modalInstance(animate);
-        modal.html('<span class="icon ' + icon + '"></span><strong>' + title + '</strong><small>' + description + '</small>');
-        setTimeout(function() {
-            modal.addClass(CSS_CLASS.SHOW);
-        }, 100);
-
-        _auto_hide(seconds, callback);
+        _show(_markup(title, description, icon));
+        _hide(seconds, callback);
     };
 
     /**
      *
      */
     var hide = function() {
-        _hide_children();
-
+        _window.removeClass(STYLE.SHOW);
         setTimeout(function() {
-            _el.style('display', 'none');
+            _el.style('display', 'none').removeClass('url').removeClass('confirm');
         }, 300);
+    };
+
+    /**
+     *
+     */
+    var confirm = function(options) {
+        _options = options;
+        _new_instance(false);
+
+        markup = '<p>' + _markup(options.title, options.description, options.icon) + '</p><hr/>';
+        markup += _button_markup(options.accept, 'accept');
+        markup += _button_markup(options.cancel, 'cancel');
+
+        _window.addClass('special confirm');
+        _show(markup);
     };
 
     /**
      *
      */
     var notify = function(title, description, icon, type, seconds, callback) {
-        _instance(false);
+        _new_instance(false);
 
-        var notify = lng.dom(SELECTOR.NOTIFY);
-        notify.addClass(type || 'info');
-        notify.html('<span class="icon ' + icon + '"></span><strong>' + title + '</strong><br/><small>' + description + '</small>');
-
-        setTimeout(function() {
-            notify.addClass(CSS_CLASS.SHOW);
-        }, 300);
-
-        _auto_hide(seconds, callback);
+        _window.addClass(type || 'info').addClass('special notify');
+        _show(_markup(title, description, icon));
+        _hide(seconds, callback);
     };
 
     /**
      *
      */
-    var option = function(title, options) {
-        _instance(true);
+    var html = function(markup, closable) {
+        _new_instance(true);
 
-        _options = options;
-        var buttons = _createButtons(options);
-
-
-        var modal = lng.dom(SELECTOR.MODAL);
-        modal.removeClass(CSS_CLASS.WORKING).removeClass(CSS_CLASS.SHOW);
-        modal.addClass('input').html('<strong>' + title + '</strong>' + buttons).show();
-
-        setTimeout(function(){
-            modal.addClass('show');
-        }, 100);
-    };
-
-    /**
-     *
-     */
-    var html = function(html, closable, callback) {
-        html += (closable) ? '<span class="icon multiply"></span>' : '';
-
-        _instance(true);
-
-        var modal = _modalInstance(false);
-        modal.html(html).addClass('url');
-        setTimeout(function() {
-            modal.addClass(CSS_CLASS.SHOW);
-        }, 100);
-
-        _auto_hide(0, callback);
-    };
-
-    /**
-     *
-     */
-    var confirm = function(title, description, icon, label_confirm, callback) {
-        var modal = 1;
+        _window.addClass('url');
+        markup += (closable) ? '<span class="icon multiply"></span>' : '';
+        _show(markup);
     };
 
     var _init = function() {
         lng.dom(SELECTOR.BODY).append(MARKUP_GROWL);
         _el = lng.dom(SELECTOR.GROWL);
+        _window = _el.children('.window');
 
         _subscribeEvents();
     };
 
-    var _instance = function(modal) {
-        var growl = _el;
+    var _new_instance = function(modal, animate) {
+        _el.style('display') === 'none' && _el.show();
+        modal && _el.addClass(STYLE.MODAL) || _el.removeClass(STYLE.MODAL);
 
-        growl.style('display') === 'none' && growl.show();
-        modal && growl.addClass('modal');
-    };
-
-    var _modalInstance = function(animate) {
-        var modal = lng.dom(SELECTOR.MODAL);
-        modal.removeClass(CSS_CLASS.SHOW);
-        modal.removeClass(CSS_CLASS.INPUT);
-
-        _animate(modal, animate);
-
-        return modal;
-    };
-
-    var _animate = function(element, animate) {
+        _window.removeClass('special').removeClass('url').removeClass(STYLE.SHOW).removeClass(STYLE.WORKING);
         if (animate) {
-            element.addClass(CSS_CLASS.WORKING);
-        }
-        else {
-            element.removeClass(CSS_CLASS.WORKING);
+            _window.addClass(STYLE.WORKING);
         }
     };
 
-    var _createButtons = function(options) {
-        var buttons = '';
-        for (var i = 0, len = options.length; i < len; i++) {
-            buttons += _option_button(options[i].color, 'growl_option_' + i, options[i].icon, options[i].name);
-        }
-
-        return buttons;
+    var _show = function(html) {
+        _window.html(html);
+        setTimeout(function() {
+            _window.addClass(STYLE.SHOW);
+        }, DELAY_TIME);
     };
 
-    var _option_button = function(color, id, icon, label) {
-        id = (id !== undefined) ? 'id="' + id + '"' : '';
-        return '<a href="#" ' + id + ' class="button ' + color + '"><span class="icon ' + icon + '"></span>' + label + '</a>';
-    };
-
-    var _auto_hide = function(seconds, callback) {
-        if (seconds != undefined && seconds != 0) {
+    var _hide = function(seconds, callback) {
+        if (seconds !== undefined && seconds !== 0) {
             if (callback === undefined) {
                 callback = CALLBACK_HIDE;
             }
@@ -173,44 +126,39 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         }
     };
 
-    var _hide_children = function() {
-        _hide_child(SELECTOR.MODAL);
-        _hide_child(SELECTOR.NOTIFY);
+    var _markup = function(title, description, icon) {
+        return '<span class="icon ' + icon + '"></span><strong>' + title + '</strong><small>' + description + '</small>';
     };
 
-    var _hide_child = function(selector) {
-        var child = lng.dom(selector);
-        if (child.hasClass(CSS_CLASS.SHOW)) {
-            child.removeClass(CSS_CLASS.SHOW);
-        }
+    var _button_markup = function(options, callback) {
+        return '<a href="#" data-callback="' + callback + '" class="button ' + options.color + '" data-icon="' + options.icon + '">' + options.label + '</a>';
     };
 
     var _subscribeEvents = function() {
-        lng.dom(SELECTOR.NOTIFY).bind('click', function() {
-            lng.dom(SELECTOR.NOTIFY).removeClass(CSS_CLASS.SHOW);
-        });
-
-        lng.dom('.growl .modal.input a, .growl .modal .multiply').tap(function(event) {
-            if (lng.dom(this).attr('id')) {
-                id = lng.dom(this).attr('id').replace(/growl_option_/g, '');
-                setTimeout(_options[id].callback, 100);
-            } else {
-                event.preventDefault();
+        _window.tap(function(event) {
+            if (_window.hasClass('notify')) {
                 hide();
-                return false;
             }
         });
+
+        lng.dom('.growl .confirm a.button, .growl > .url .multiply').tap(function(event) {
+            var button = lng.dom(this);
+            var callback = _options[button.data('callback')].callback;
+            if (callback) callback.call(callback);
+            hide();
+        });
+
+        lng.dom('.growl > .url .multiply').tap( hide );
     };
 
     _init();
 
     return {
         show: show,
-        hide: hide,
         notify: notify,
-        option: option,
+        confirm: confirm,
         html: html,
-        confirm: confirm
+        hide: hide
     };
 
 })(LUNGO);
