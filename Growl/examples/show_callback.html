@@ -8,23 +8,9 @@
 
     <title>Lungo.Sugar.Growl by @soyjavi</title>
 
-    <link rel="stylesheet" href="../../vendor/LungoJS/lungo-1.2.min.css">
-
+    <link rel="stylesheet" href="../../vendor/LungoJS/lungo.css">
     <link rel="stylesheet" href="../../vendor/LungoJS/lungo.theme.default.css">
     <link rel="stylesheet" href="../lungo.sugar.growl.css">
-
-    <style>
-        @-webkit-keyframes growl-working {
-            0% {opacity: 1; }
-            50% {opacity: 0;}
-            100% {opacity: 1;}
-        }
-        @-webkit-keyframes growl-loading {
-            0% { -webkit-transform: rotate(0deg); }
-            50% {opacity: 0;}
-            100% {opacity: 1;}
-        }
-    </style>
 </head>
 
 <body>
@@ -32,30 +18,20 @@
     <section>
         <header><h1 class="title">Testing Growl</h1></header>
         <article class="current">
-            <a href="#" class="button big red" data-icon="check">Hello</a>
         </article>
         <footer></footer>
     </section>
 
-    <!--
-    <div class="growl modal">
-        <div class="modal working show">
-            <span class="big icon target"></span>
-            <strong>Radar is on</strong>
-            <small>We'll buz your phone when you're near cool places</small>
-        </div>
-        <div class="notify"></div>
-    </div>
-    -->
-
-    <script src="../../vendor/LungoJS//lungo-1.2.packed.js"></script>
+    <script src="../../vendor/LungoJS/lungo.js"></script>
     <script src="../lungo.sugar.growl.js"></script>
     <script>
         LUNGO.dom(document).ready(function(){
             //show(title, description, icon, animate, seconds, callback)
-            LUNGO.Sugar.Growl.show('Radar is on!', 'Loading resources near your position, please wait', 'map', true, 3, function() {
+            LUNGO.Sugar.Growl.show('Radar is on!', 'Loading resources near your position, please wait', 'map', true, 1, function() {
                 //alert('Loaded');
-                LUNGO.Sugar.Growl.hide();
+                LUNGO.Sugar.Growl.notify('Radar enabled!', 'Please tap to continue', 'pushpin', 'success', 2, function() {
+                        LUNGO.Sugar.Growl.show('Radar is off!', '', 'map', true, 2);
+                });
             });
         });
     </script>

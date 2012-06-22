@@ -15,13 +15,15 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
     var _window = null;
 
     var DELAY_TIME = 1;
+    var ANIMATION_MILISECONDS = 300;
 
     var SELECTOR = {
         BODY: 'body',
         GROWL: '.growl',
-        MODAL: '.growl .modal',
-        NOTIFY: '.growl .notify',
-        MODAL_HREF: '.growl .modal a'
+        MODAL: '.growl .window',
+        MODAL_HREF: '.growl .window a',
+        WINDOW_CLOSABLE: '.growl > .url .close',
+        CONFIRM_BUTTONS: '.growl .confirm a.button'
     };
 
     var STYLE = {
@@ -39,7 +41,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
      *
      */
     var show = function(title, description, icon, animate, seconds, callback) {
-        _new_instance(true);
+        _new_instance(true, animate);
 
         _show(_markup(title, description, icon));
         _hide(seconds, callback);
@@ -52,7 +54,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         _window.removeClass(STYLE.SHOW);
         setTimeout(function() {
             _el.style('display', 'none').removeClass('url').removeClass('confirm');
-        }, 300);
+        }, ANIMATION_MILISECONDS);
     };
 
     /**
@@ -88,7 +90,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         _new_instance(true);
 
         _window.addClass('url');
-        markup += (closable) ? '<span class="icon multiply"></span>' : '';
+        markup += (closable) ? '<span class="icon close"></span>' : '';
         _show(markup);
     };
 
@@ -104,7 +106,9 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         _el.style('display') === 'none' && _el.show();
         modal && _el.addClass(STYLE.MODAL) || _el.removeClass(STYLE.MODAL);
 
-        _window.removeClass('special').removeClass('url').removeClass(STYLE.SHOW).removeClass(STYLE.WORKING);
+        _window.removeClass(STYLE.SHOW).removeClass(STYLE.WORKING);
+        _window.removeClass('url').removeClass('notify').removeClass('confirm').removeClass('special');
+        _window.removeClass('error').removeClass('alert').removeClass('success');
         if (animate) {
             _window.addClass(STYLE.WORKING);
         }
@@ -119,10 +123,11 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
 
     var _hide = function(seconds, callback) {
         if (seconds !== undefined && seconds !== 0) {
-            if (callback === undefined) {
-                callback = CALLBACK_HIDE;
-            }
-            setTimeout(callback, seconds * 1000);
+            var miliseconds = seconds * 1000;
+            setTimeout(function() {
+                hide();
+                if (callback) setTimeout(callback, ANIMATION_MILISECONDS);
+            }, miliseconds);
         }
     };
 
@@ -141,14 +146,14 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
             }
         });
 
-        lng.dom('.growl .confirm a.button, .growl > .url .multiply').tap(function(event) {
+        lng.dom(SELECTOR.CONFIRM_BUTTONS).tap(function(event) {
             var button = lng.dom(this);
             var callback = _options[button.data('callback')].callback;
             if (callback) callback.call(callback);
             hide();
         });
 
-        lng.dom('.growl > .url .multiply').tap( hide );
+        lng.dom(SELECTOR.WINDOW_CLOSABLE).tap( hide );
     };
 
     _init();
