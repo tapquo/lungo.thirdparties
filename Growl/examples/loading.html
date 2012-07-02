@@ -17,21 +17,15 @@
 
     <section>
         <header><h1 class="title">Testing Growl</h1></header>
-        <article class="current">
-        </article>
+        <article></article>
+        <footer></footer>
     </section>
 
     <script src="../../vendor/LungoJS/lungo.js"></script>
     <script src="../lungo.sugar.growl.js"></script>
     <script>
         LUNGO.dom(document).ready(function(){
-            //show(title, description, icon, animate, seconds, callback)
-            LUNGO.Sugar.Growl.show('Radar is on!', 'Loading resources near your position, please wait', 'map', true, 1, function() {
-                //alert('Loaded');
-                LUNGO.Sugar.Growl.notify('Radar enabled!', 'Please tap to continue', 'pushpin', 'success', 2, function() {
-                    LUNGO.Sugar.Growl.show('Radar is off!', '', 'map', true, 2);
-                });
-            });
+            LUNGO.Sugar.Growl.loading();
         });
     </script>
 </body>

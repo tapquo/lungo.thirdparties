@@ -16,6 +16,8 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
 
     var DELAY_TIME = 1;
     var ANIMATION_MILISECONDS = 300;
+    var ATTRIBUTE = lng.Constants.ATTRIBUTE;
+    var BINDING = lng.Constants.BINDING;
 
     var SELECTOR = {
         BODY: 'body',
@@ -64,7 +66,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         _options = options;
         _new_instance(false);
 
-        markup = '<p>' + _markup(options.title, options.description, options.icon) + '</p><hr/>';
+        var markup = '<p>' + _markup(options.title, options.description, options.icon) + '</p><hr/>';
         markup += _button_markup(options.accept, 'accept');
         markup += _button_markup(options.cancel, 'cancel');
 
@@ -92,6 +94,17 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         _window.addClass('url');
         markup += (closable) ? '<span class="icon close"></span>' : '';
         _show(markup);
+    };
+
+    /**
+     *
+     */
+    var loading = function() {
+        _new_instance(true);
+
+        var data_loading = lng.Attributes.Data.Loading.html;
+        var html_binded = data_loading.replace(BINDING.START + BINDING.KEY + BINDING.END, 'icon loading white');
+        _show(html_binded);
     };
 
     var _init = function() {
@@ -163,6 +176,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         notify: notify,
         confirm: confirm,
         html: html,
+        loading: loading,
         hide: hide
     };
 

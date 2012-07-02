@@ -33,9 +33,12 @@
         opacity: 0;
 
         //transition-property: -webkit-transform, transform, opacity;
-        .transition(all @keyframe @defaultTrasition);
+        //.transition(all @keyframe @defaultTrasition);
 
-        &.show { opacity: 1; }
+        &.show {
+            opacity: 1;
+            .transition(opacity @keyframe @defaultTrasition);
+        }
 
         &:not(.special) {
             left: 50%;
@@ -56,6 +59,9 @@
             & .icon {
                 display: block;
                 font-size: 5.0em;
+                &.loading {
+                    margin-bottom: 24px;
+                }
             }
 
             & strong {
