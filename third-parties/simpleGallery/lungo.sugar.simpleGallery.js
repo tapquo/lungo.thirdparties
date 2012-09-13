@@ -1,13 +1,13 @@
-/** 
+/**
  * Simple Image Gallery
- * 
- * @namespace LUNGO.Sugar
+ *
+ * @namespace Lungo.Sugar
  * @class simpleGallery
  *
  * @author Hugo Habel <hugohabel@gmail.com> || @hugohabel
  */
 
-LUNGO.Sugar.SimpleGallery = (function(lng, undefined) {
+Lungo.Sugar.SimpleGallery = (function(lng, undefined) {
     // Internal options
     var _options = [];
     // Aux vars
@@ -69,14 +69,14 @@ LUNGO.Sugar.SimpleGallery = (function(lng, undefined) {
         }
     };
     function _slideshow() {
-        $(SELECTOR.SIMPLEGALLERY).trigger('click'); 
+        $(SELECTOR.SIMPLEGALLERY).trigger('click');
     }
     // Register the events
     var _subscribeEvents = function() {
         $(SELECTOR.SIMPLEGALLERY).bind('click', function() {
             $(_imgs[_currentIndex]).attr('class', 'inactive');
             if ( _currentIndex == _imgs.length - 1 ) {
-                _currentIndex = 0;    
+                _currentIndex = 0;
             } else {
                 _currentIndex++;
             }
@@ -88,4 +88,4 @@ LUNGO.Sugar.SimpleGallery = (function(lng, undefined) {
     return {
         show: show
     }
-})(LUNGO);
+})(Lungo);

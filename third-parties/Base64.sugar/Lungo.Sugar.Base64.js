@@ -1,14 +1,14 @@
 /**
  * Base 64
  *
- * @namespace LUNGO.Sugar
+ * @namespace Lungo.Sugar
  * @class Base64
  * @version 1.0
  *
  * @author Marcos <marcos.espada.vazquez@gmail.com> || @Merkavalol
  */
 
-LUNGO.Sugar.Base64 = (function(lng, undefined) {
+Lungo.Sugar.Base64 = (function(lng, undefined) {
 /**
 *
 *  Base64 encode / decode
@@ -132,10 +132,10 @@ LUNGO.Sugar.Base64 = (function(lng, undefined) {
         }
         return string;
     };
-    
+
     return {
         encode: encode,
         decode: decode
     }
 
-})(LUNGO);
+})(Lungo);

@@ -1,13 +1,13 @@
 /**
  * QR Encoder
  *
- * @namespace LUNGO.Sugar
+ * @namespace Lungo.Sugar
  * @class QR
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
 
-LUNGO.Sugar.QR = (function(lng, undefined) {
+Lungo.Sugar.QR = (function(lng, undefined) {
 
     var GOOGLE_SERVICE = 'http://chart.googleapis.com/chart?cht=qr';
 
@@ -46,4 +46,4 @@ LUNGO.Sugar.QR = (function(lng, undefined) {
         encode: encode
     }
 
-})(LUNGO);
+})(Lungo);

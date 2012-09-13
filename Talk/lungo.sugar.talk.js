@@ -1,14 +1,14 @@
 /**
  * Talk Manager
  *
- * @namespace LUNGO.Sugar
+ * @namespace Lungo.Sugar
  * @class Talk
  * @version 1.0
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
 
-LUNGO.Sugar.Talk = (function(lng, undefined) {
+Lungo.Sugar.Talk = (function(lng, undefined) {
 
     var TEMPLATE_NAME = 'sugar-talk-tmp';
 
@@ -54,4 +54,4 @@ LUNGO.Sugar.Talk = (function(lng, undefined) {
         append: append
     }
 
-})(LUNGO);
+})(Lungo);

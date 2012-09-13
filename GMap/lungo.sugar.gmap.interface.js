@@ -1,14 +1,14 @@
 /**
  * GMap Manager
  *
- * @namespace LUNGO.Sugar.Gmap
+ * @namespace Lungo.Sugar.Gmap
  * @class Interface
  * @version 1.0
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
 
-LUNGO.Sugar.GMap.Interface = (function(lng, undefined) {
+Lungo.Sugar.GMap.Interface = (function(lng, undefined) {
 
     var MAP_TYPES = {
         ROADMAP: 'roadmap',
@@ -53,4 +53,4 @@ LUNGO.Sugar.GMap.Interface = (function(lng, undefined) {
     	MarkerIcon: MarkerIcon
     }
 
-})(LUNGO);
+})(Lungo);

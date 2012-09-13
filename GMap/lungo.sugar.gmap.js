@@ -1,14 +1,14 @@
 /**
  * GMap Manager
  *
- * @namespace LUNGO.Sugar
+ * @namespace Lungo.Sugar
  * @class GMap
  * @version 1.0
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
 
-LUNGO.Sugar.GMap = (function(lng, undefined) {
+Lungo.Sugar.GMap = (function(lng, undefined) {
 
     var DEFAULT_OPTIONS_GMAPS_STATIC = {
         sensor: false,
@@ -120,4 +120,4 @@ LUNGO.Sugar.GMap = (function(lng, undefined) {
         addMarker: addMarker
     }
 
-})(LUNGO);
+})(Lungo);

@@ -1,15 +1,15 @@
-/** 
+/**
  * DatePicker
- * 
- * @namespace LUNGO.Sugar
+ *
+ * @namespace Lungo.Sugar
  * @class DatePicker
  * @version 1.1
  *
  * @author Iñigo Gonzalez Vazquez <ingonza85@gmail.com> || @haas85
  */
 
-LUNGO.Sugar.DatePicker = (function(lng, undefined) {
-	
+Lungo.Sugar.DatePicker = (function(lng, undefined) {
+
 var calendarInfo = new Array();
 calendarInfo['es'] = {"mondayFirst":true,"weekDays":["L","M","X","J","V","S","D"],"months":["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]};
 calendarInfo['en'] = {"mondayFirst":false,"weekDays":["S","M","T","W","T","F","S"],"months":["January","February","March","April","May","June","July","August","September","October","November","December"]};
@@ -27,7 +27,7 @@ var createMonthCalendar = function(dateObject,locale){
 	weekArray[0] = new Array(7);
 	if (dateSetter.getDay()==0){
 		calendarType.mondayFirst ? weekArray[0][6] = 1 : weekArray[0][0] = 1;
-		
+
 	}else{
 		calendarType.mondayFirst ? weekArray[0][dateSetter.getDay()-1] = 1 : weekArray[0][dateSetter.getDay()] = 1;
 	}
@@ -46,7 +46,7 @@ var createMonthCalendar = function(dateObject,locale){
 		}else{
 			calendarType.mondayFirst ? weekArray[week][dateSetter.getDay()-1] = dateSetter.getDate() : weekArray[week][dateSetter.getDay()] = dateSetter.getDate();
 		}
-		
+
 		dateSetter.setDate(dateSetter.getDate() + 1);
 	}
 	return weekArray;
@@ -57,9 +57,9 @@ var createHTMLDP = function(locale,month,year, dateArray){
 	var htmlCode = '<table class="datepicker" id="datePickerId" border="0" cellspacing="0">';
 	var calendarType = eval(calendarInfo[locale]);
 	htmlCode += '<tr class="pickerheader">';
-	htmlCode += '<td colspan=2 class="pickerarrow pickerleft" onclick="LUNGO.Sugar.DatePicker.reducemonth(\'' + locale + '\')"><span class="big icon backward" style="font-size:2em;pading-top:100px;"></span></td>';
+	htmlCode += '<td colspan=2 class="pickerarrow pickerleft" onclick="Lungo.Sugar.DatePicker.reducemonth(\'' + locale + '\')"><span class="big icon backward" style="font-size:2em;pading-top:100px;"></span></td>';
 	htmlCode += '<td colspan=3 class="pickermonth"><p>' + calendarType.months[month] + '</p>' + year + '</td>';
-	htmlCode += '<td colspan=2 class="pickerarrow pickerright" onclick="LUNGO.Sugar.DatePicker.nextmonth(\'' + locale + '\')"><span class="big icon forward" style="font-size:2em;"></span></td></tr>';
+	htmlCode += '<td colspan=2 class="pickerarrow pickerright" onclick="Lungo.Sugar.DatePicker.nextmonth(\'' + locale + '\')"><span class="big icon forward" style="font-size:2em;"></span></td></tr>';
 	htmlCode += '<tr class="weekdays">';
 	for(var i = 0; i < 7;i++){
 			htmlCode += '<td>' + calendarType.weekDays[i] + '</td>';
@@ -71,9 +71,9 @@ var createHTMLDP = function(locale,month,year, dateArray){
 				for(var z = 0; z < dateArray[j].length;z++){
 					if(null!=dateArray[j][z])
 						if (dateArray[j][z]==date.getDate())
-							htmlCode += '<td class="datePickerToday" onclick="LUNGO.Sugar.DatePicker.executeCallback('+dateArray[j][z]+','+month+','+year+')"><div class="today">' + dateArray[j][z] + '</div></td>';
+							htmlCode += '<td class="datePickerToday" onclick="Lungo.Sugar.DatePicker.executeCallback('+dateArray[j][z]+','+month+','+year+')"><div class="today">' + dateArray[j][z] + '</div></td>';
 						else
-							htmlCode += '<td class="datePickerDay" onclick="LUNGO.Sugar.DatePicker.executeCallback('+dateArray[j][z]+','+month+','+year+')">' + dateArray[j][z] + '</td>';
+							htmlCode += '<td class="datePickerDay" onclick="Lungo.Sugar.DatePicker.executeCallback('+dateArray[j][z]+','+month+','+year+')">' + dateArray[j][z] + '</td>';
 					else
 						htmlCode += '<td class="datePickerDay"></td>';
 				}
@@ -84,14 +84,14 @@ var createHTMLDP = function(locale,month,year, dateArray){
 				htmlCode += '<tr class="calendardays">';
 				for(var z = 0; z < dateArray[j].length;z++){
 					if(null!=dateArray[j][z])
-						htmlCode += '<td class="datePickerDay" onclick="LUNGO.Sugar.DatePicker.executeCallback('+dateArray[j][z]+','+month+','+year+')">' + dateArray[j][z] + '</td>';
+						htmlCode += '<td class="datePickerDay" onclick="Lungo.Sugar.DatePicker.executeCallback('+dateArray[j][z]+','+month+','+year+')">' + dateArray[j][z] + '</td>';
 					else
 						htmlCode += '<td class="datePickerDay"></td>';
 				}
 				htmlCode += '</tr>';
 		}
 	}
-	htmlCode += '<tr class="pickerfooter" onclick="LUNGO.Sugar.DatePicker.hide()"><td colspan=7><span class="big icon cancel" style="font-size:2em;"></span></td></tr>';
+	htmlCode += '<tr class="pickerfooter" onclick="Lungo.Sugar.DatePicker.hide()"><td colspan=7><span class="big icon cancel" style="font-size:2em;"></span></td></tr>';
 	htmlCode += '</table>';
 	return htmlCode;
 }
@@ -142,4 +142,4 @@ return {
         nextmonth: nextmonth,
         getMonthName: getMonthName
 }
-})(LUNGO);
+})(Lungo);

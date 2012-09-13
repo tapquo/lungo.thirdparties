@@ -8,19 +8,21 @@
 
 	<title>Lungo.Sugar.Growl by @soyjavi</title>
 
-	<link rel="stylesheet" href="../../vendor/LungoJS/lungo-1.2.min.css">
-
-	<link rel="stylesheet" href="../../vendor/LungoJS/lungo.theme.default.css">
+	<link rel="stylesheet" href="../../vendor/LungoJS/lungo.css">
+    <link rel="stylesheet" href="../../vendor/LungoJS/lungo.icon.css">
+	<link rel="stylesheet" href="../../vendor/LungoJS/lungo.theme.scaffold.css">
 </head>
 
 <body>
     <section id="main">
         <header data-title="Map Sugar">
-            <nav class="onleft">
-                <a href="#" id="btn-route" class="button">Route</a>
-                <a href="#" id="btn-add" class="button">Add</a>
+            <nav class="left">
+                <a href="#" id="btn-route" >Route</a>
+                <a href="#" id="btn-add">Add</a>
             </nav>
-            <a href="#" id="btn-clean" class="button red onright">clean</a>
+            <nav class="right">
+                <a href="#" id="btn-clean">clean</a>
+            </nav>
         </header>
 
         <footer class="toolbar with-labels">
@@ -30,21 +32,21 @@
             </nav>
         </footer>
 
-        <article id="map">
-        </article>
+        <article class="current" id="map"></article>
         <article id="instructions" class="list scrollable"></article>
     </section>
 
 
-    <script src="../../vendor/LungoJS/lungo-1.2.packed.js"></script>
+    <script src="../../vendor/LungoJS/quo.js"></script>
 
+    <script src="../../vendor/LungoJS/lungo.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="../lungo.sugar.gmap.js"></script>
     <script src="../lungo.sugar.gmap.interface.js"></script>
     <script src="../lungo.sugar.gmap.route.js"></script>
     <script>
 
-        LUNGO.App.init({
+        Lungo.init({
             name: 'Kitchen Sink',
             version: '1.1',
             resources: {
@@ -56,16 +58,16 @@
         var _from = { latitude: 59.32522, longitude: 18.07002 };
         var _to = { latitude: 59.327383, longitude: 18.06747 };
 
-        LUNGO.View.Template.create('sugar-gmap-indications', '<li><div class="onright bubble pink">{{duration}}</div>{{instructions}}</li>');
+        Lungo.View.Template.create('sugar-gmap-indications', '<li><div class="right bubble blue">{{duration}}</div><small>{{instructions}}</small></li>');
 
-        LUNGO.Sugar.GMap.init({
+        Lungo.Sugar.GMap.init({
             el: '#map',
             zoom: 14,
             //type: 'HYBRID',
             center: _from
         });
 
-        LUNGO.dom('#btn-route').tap(function(event) {
+        Lungo.dom('#btn-route').tap(function(event) {
             var markers = {
                 from: {
                     url: 'pushpin-red.png',
@@ -79,31 +81,31 @@
                 }*/
             };
 
-            LUNGO.Sugar.GMap.Route.init(_from, _to, 'WALKING', markers, function() {
-                var instructions = LUNGO.Sugar.GMap.Route.instructions();
+            Lungo.Sugar.GMap.Route.init(_from, _to, 'WALKING', markers, function() {
+                var instructions = Lungo.Sugar.GMap.Route.instructions();
 
-                LUNGO.View.Template.List.create({
+                Lungo.View.Template.List.create({
                     el: '#instructions',
                     template: 'sugar-gmap-indications',
                     data: instructions.steps
                 });
-                LUNGO.View.Element.count('footer nav a:last-child', instructions.steps.length);
+                Lungo.View.Element.count('footer nav a:last-child', instructions.steps.length);
 
             });
         });
 
-        LUNGO.dom('#btn-add').tap(function(event) {
+        Lungo.dom('#btn-add').tap(function(event) {
             var position = { latitude: 59.326, longitude: 18.07002 };
 
-            LUNGO.Sugar.GMap.addMarker(position, null, false);
-            LUNGO.Sugar.GMap.center(position);
-            LUNGO.Sugar.GMap.zoom(16);
+            Lungo.Sugar.GMap.addMarker(position, null, false);
+            Lungo.Sugar.GMap.center(position);
+            Lungo.Sugar.GMap.zoom(16);
         });
 
-        LUNGO.dom('#btn-clean').tap(function(event) {
+        Lungo.dom('#btn-clean').tap(function(event) {
 
-            LUNGO.Sugar.GMap.zoom(14);
-            LUNGO.Sugar.GMap.clean();
+            Lungo.Sugar.GMap.zoom(14);
+            Lungo.Sugar.GMap.clean();
         });
     </script>
 </body>

@@ -1,14 +1,14 @@
 /**
  * GMap Manager
  *
- * @namespace LUNGO.Sugar.Gmap
+ * @namespace Lungo.Sugar.Gmap
  * @class Route
  * @version 1.0
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
 
-LUNGO.Sugar.GMap.Route = (function(lng, undefined) {
+Lungo.Sugar.GMap.Route = (function(lng, undefined) {
 
     var TRAVEL_MODES = {
         WALKING: 'WALKING',
@@ -27,7 +27,7 @@ LUNGO.Sugar.GMap.Route = (function(lng, undefined) {
         }
     };
 
-    var _that = LUNGO.Sugar.GMap;
+    var _that = Lungo.Sugar.GMap;
     var _callback = null;
 
 
@@ -146,4 +146,4 @@ LUNGO.Sugar.GMap.Route = (function(lng, undefined) {
         instructions: instructions
     }
 
-})(LUNGO);
+})(Lungo);

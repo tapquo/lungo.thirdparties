@@ -5,7 +5,7 @@ COMPILER=google-compiler/compiler.jar
 BUILDPATH=../release/
 MINIFIED="min"
 PACKED="packed"
-LUNGO_SUGAR='lungo.sugar.'
+Lungo_SUGAR='lungo.sugar.'
 
 #script
 clear
@@ -21,7 +21,7 @@ done
 
 #GMap
 SUGAR='gmap'
-DIR=$LUNGO_SOURCES"../"$SUGAR"/"$LUNGO_SUGAR$SUGAR"."
+DIR=$Lungo_SOURCES"../"$SUGAR"/"$Lungo_SUGAR$SUGAR"."
 FILES=(js interface.js route.js)
 for file in "${FILES[@]}"
 do
@@ -30,7 +30,7 @@ do
 done
 
 #MINIFIED Version
-java -jar $COMPILER $FILES_TO_COMPILE --js_output_file $BUILDPATH/$LUNGO_SUGAR$SUGAR.$MINIFIED.js
-echo -e "\033[33m  [BUILD]: "$LUNGO_SUGAR$SUGAR.$MINIFIED.js"\033[0m"
+java -jar $COMPILER $FILES_TO_COMPILE --js_output_file $BUILDPATH/$Lungo_SUGAR$SUGAR.$MINIFIED.js
+echo -e "\033[33m  [BUILD]: "$Lungo_SUGAR$SUGAR.$MINIFIED.js"\033[0m"
 
 echo ============================ /QUOJS COMPILER ============================

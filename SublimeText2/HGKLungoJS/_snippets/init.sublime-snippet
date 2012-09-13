@@ -16,7 +16,7 @@ var App = (function(lng, undefined) {
             ]
         }
     });
-})(LUNGO);
+})(Lungo);
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>lnginit</tabTrigger>

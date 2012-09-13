@@ -3,7 +3,7 @@ Copyright (c) 2011-2012 TapQuo Inc (Javier Jimenez Villar)
 ===============================================================================
 ===============================================================================
 
-OPEN SOURCE LICENSE FOR LUNGOJS
+OPEN SOURCE LICENSE FOR LungoJS
 Version 1.2
 
 LungoJS is an avid supporter of open source software. This is the appropriate
@@ -17,7 +17,7 @@ View the license terms: http://www.gnu.org/copyleft/gpl.html
 
 THIS DOCUMENT IS A LEGAL AGREEMENT (the “License Agreement”) BETWEEN TAPQUO INC.
 (“We,” “Us”) AND YOU OR THE ORGANIZATION ON WHOSE BEHALF YOU ARE UNDERTAKING
-THE LICENSE DESCRIBED BELOW (“You”) IN RELATION TO THE LUNGOJS SOFTWARE
+THE LICENSE DESCRIBED BELOW (“You”) IN RELATION TO THE LungoJS SOFTWARE
 LIBRARY (THE “Software”), AND/OR ALL RELATED MATERIALS. BY DOWNLOADING,
 INSTALLING, COPYING OR OTHERWISE USING THE SOFTWARE, YOU ACCEPT THE FOLLOWING
 TERMS AND CONDITIONS. IF YOU DO NOT AGREE WITH ANY OF THE TERMS OR CONDITIONS
@@ -41,7 +41,7 @@ advice.
 ===============================================================================
 ===============================================================================
 
-LUNGOJS AND THE GPL v3
+LungoJS AND THE GPL v3
 Version 1.2
 
 -------------------------------------------------------------------------------

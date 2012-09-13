@@ -1,13 +1,13 @@
 /**
  * Player audio files (.mp3, .wav and .ogg)
  *
- * @namespace LUNGO.Sugar
+ * @namespace Lungo.Sugar
  * @class Sound
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
 
-LUNGO.Sugar.Sound = (function(lng, undefined) {
+Lungo.Sugar.Sound = (function(lng, undefined) {
     var _background = document.createElement('audio');
     var _sound = document.createElement('audio');
 
@@ -50,4 +50,4 @@ LUNGO.Sugar.Sound = (function(lng, undefined) {
         background: background,
         play: play
     }
-})(LUNGO);
+})(Lungo);

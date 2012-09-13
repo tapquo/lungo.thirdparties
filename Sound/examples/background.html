@@ -16,20 +16,20 @@
     <a href="#" id="jump">Jump</a>
     <a href="#" id="kick">Kick</a>
 
-    <script src="../../vendor/LungoJS/lungo-1.2.packed.js"></script>
+    <script src="../../vendor/LungoJS/lungo.js"></script>
     <script src="../Lungo.Sugar.Sound.js"></script>
     <script>
-        LUNGO.ready(function(){
-            LUNGO.Sugar.Sound.background('sounds/smb_overworld.mp3');
+        Lungo.ready(function(){
+            Lungo.Sugar.Sound.background('sounds/smb_overworld.mp3');
             //TO Stop music
-            //LUNGO.Sugar.Sound.background(null);
+            //Lungo.Sugar.Sound.background(null);
 
             document.getElementById('jump').addEventListener('click', function() {
-                LUNGO.Sugar.Sound.play('sounds/smb_jumpsmall.wav');
+                Lungo.Sugar.Sound.play('sounds/smb_jumpsmall.wav');
             }, false);
 
             document.getElementById('kick').addEventListener('click', function() {
-                LUNGO.Sugar.Sound.play('sounds/smb_kick.wav');
+                Lungo.Sugar.Sound.play('sounds/smb_kick.wav');
             }, false);
         });
     </script>

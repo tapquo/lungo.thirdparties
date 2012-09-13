@@ -8,7 +8,7 @@
 
     <title>Lungo.Sugar.Socket_IO by @bvaldivielso</title>
 
-    <link rel="stylesheet" href="../../../vendor/LungoJS/lungo-1.2.min.css">
+    <link rel="stylesheet" href="../../../vendor/LungoJS/lungo.css">
     <link rel="stylesheet" href="../../../vendor/LungoJS/lungo.theme.default.css">
 </head>
 
@@ -20,24 +20,24 @@
         <footer></footer>
     </section>
 
-     <script src="../../../vendor/LungoJS/lungo-1.2.packed.js"></script>
-    <script src="../lib/socket.io.min.js"></script> 
+     <script src="../../../vendor/LungoJS/lungo.js"></script>
+    <script src="../lib/socket.io.min.js"></script>
     <script src="../lungo.sugar.socket.io.js"></script>
     <script>
     	var SOCKET_IO_SERVERNAME = "http://127.0.0.1:3000"; // You might change this, look server.js
-    	LUNGO.App.init({
+    	Lungo.init({
     		name : "Socket.io sugar test",
     		version : "0.1"
     	});
-    
-        LUNGO.dom(document).ready(function(){
-        	var sio = LUNGO.Sugar.Socket_IO;
-            sio.connect(SOCKET_IO_SERVERNAME); 
-            
+
+        Lungo.dom(document).ready(function(){
+        	var sio = Lungo.Sugar.Socket_IO;
+            sio.connect(SOCKET_IO_SERVERNAME);
+
             sio.on("answer", function(data){
             	alert(data);
-            }); 
-            
+            });
+
             sio.emit("question", "This text has been sent to the server, and back to the client");
         });
     </script>

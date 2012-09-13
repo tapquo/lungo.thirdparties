@@ -1,14 +1,14 @@
 /**
  * Growl Notification system in CSS3
  *
- * @namespace LUNGO.Sugar
+ * @namespace Lungo.Sugar
  * @class Growl
  * @version 2.0
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
 
-LUNGO.Sugar.Growl = (function(lng, undefined) {
+Lungo.Sugar.Growl = (function(lng, undefined) {
 
     var _options = [];
     var _el = null;
@@ -36,7 +36,7 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         INPUT: 'input'
     };
 
-    var CALLBACK_HIDE = 'LUNGO.Sugar.Growl.hide()';
+    var CALLBACK_HIDE = 'Lungo.Sugar.Growl.hide()';
     var MARKUP_GROWL = '<div class="growl"><div class="window"></div></div>';
 
     /**
@@ -180,4 +180,4 @@ LUNGO.Sugar.Growl = (function(lng, undefined) {
         hide: hide
     };
 
-})(LUNGO);
+})(Lungo);

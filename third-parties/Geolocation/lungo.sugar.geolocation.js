@@ -1,13 +1,13 @@
 /**
  * Geolocation A Google Maps-based geolocation sugar
  *
- * @namespace LUNGO.Sugar
+ * @namespace Lungo.Sugar
  * @class Geolocation
  *
  * @author Gabriel Ferreiro Blazetic <gbril9119@gmail.com> || @garolard
  */
 
-LUNGO.Sugar.Geolocation = (function(lng, undefined) {
+Lungo.Sugar.Geolocation = (function(lng, undefined) {
 
 	var _container;
 	var _latlng;
@@ -23,9 +23,9 @@ LUNGO.Sugar.Geolocation = (function(lng, undefined) {
 			disableDefaultUI: true,
 			MapTypeId: google.maps.MapTypeId.ROADMAP
 		};
-		
+
 		_map = new google.maps.Map(_container, opt);
-		
+
 		if(_userPosition) {
 
 			var image = new google.maps.MarkerImage(
@@ -45,7 +45,7 @@ LUNGO.Sugar.Geolocation = (function(lng, undefined) {
 			position: _latlng,
 			map: _map,
 			title: 'Aquí estás tu',
-			icon:image, 
+			icon:image,
 			shape:shape
 			});
 		}
@@ -61,9 +61,9 @@ LUNGO.Sugar.Geolocation = (function(lng, undefined) {
 				});
 			}
 		}
-		
+
 	};
-	
+
 	var _onError = function(err) {
 		if(err.code == 1) {
 			alert("Acceso denegado");
@@ -71,16 +71,16 @@ LUNGO.Sugar.Geolocation = (function(lng, undefined) {
 			alert("No se puede conseguir localización");
 		}
 	};
-	
+
 	var setMap = function(container, userPosition, markers) {
 		if(userPosition){_userPosition = true;}
 		if(markers != false){_markers = markers;}
 		_container = document.getElementById(container);
 		navigator.geolocation.getCurrentPosition(_onSuccess, _onError);
 	};
-	
+
 	return {
 		setMap: setMap
 	}
 
-})(LUNGO);
+})(Lungo);

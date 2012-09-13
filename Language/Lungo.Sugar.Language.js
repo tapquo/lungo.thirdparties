@@ -1,13 +1,13 @@
-/** 
- * Description or Responsability 
- * 
- * @namespace LUNGO.Sugar
+/**
+ * Description or Responsability
+ *
+ * @namespace Lungo.Sugar
  * @class Language
  *
  * @author Javier Jimenez Villar <javi@tapquo.com> || @soyjavi
  */
 
-LUNGO.Sugar.Language = (function(lng, undefined) {
+Lungo.Sugar.Language = (function(lng, undefined) {
     var _languages = {};
     var _i18n = null;
 
@@ -49,4 +49,4 @@ LUNGO.Sugar.Language = (function(lng, undefined) {
         label: label
     }
 
-})(LUNGO);
+})(Lungo);
