@@ -11,7 +11,9 @@
 Lungo.Sugar.AutoComplete = function() {
 	var 
 		_el, _results_el, _choices, _place_holder
-		_result_item_tag = 'li'
+		_result_item_tag = 'li',
+		_before = function(e) { /* e = mouse event */ },
+		_after = function(el, e) { /* el = element, e = mouse event */ }
 		;
 
 	var init = function(options) {
@@ -31,6 +33,15 @@ Lungo.Sugar.AutoComplete = function() {
 			_choices = options.choices;
 		}
 
+		if (options.before) {
+			_before = options.before;
+		}
+
+		if (options.after) {
+			_after = options.after;
+		}
+
+		_el.on('click', _before);
 		_el.on('keyup', lookup);
 	}
 
@@ -42,14 +53,6 @@ Lungo.Sugar.AutoComplete = function() {
 	}
 
 	var lookup = function(e) {
-		e.stopPropagation();
-		e.preventDefault();
-
-		//13 = enter, 38 = up, 40 = down
-		if (e.keyCode === 13) {
-			return;
-		}
-
 		_results_el.empty();
 
 		if (_el.val() != '') {
@@ -61,12 +64,14 @@ Lungo.Sugar.AutoComplete = function() {
 				}
 			}
 
-			_results_el.find(_result_item_tag).tap(tap);
+
+			_results_el.find(_result_item_tag).on('click', tap);
 		}
 	}
 
 	var tap = function(e) {
-		_el.val(e.currentTarget.textContent);
+		_el.val(e.currentTarget.textContent)[0].focus();
+		_after(_el, e);
 		_results_el.empty();
 	}
 

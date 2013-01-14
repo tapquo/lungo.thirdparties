@@ -55,7 +55,10 @@
         Lungo.Sugar.AutoComplete().init({
             el: $$('#keyword'),
             results_el: $$('#results'),
-            choices: ['Apple', 'Banana', 'Carrot', 'Orange', 'Octopus']
+            choices: ['Apple', 'Banana', 'Carrot', 'Orange', 'Octopus'],
+            afterx: function(el, e) {
+                alert( el.val() );
+            }
         });
 	</script>
 </body>
