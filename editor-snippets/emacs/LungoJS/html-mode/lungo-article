@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# contributor: David Basoko <basoko@gmail.com>
+# name: lungo-article
+# key: lngarticle
+# --
+<article id="${1:article_name}" ${2: class="${3:some_class}"} ${4:data-search="${5:blue}"}>
+$0
+</article>
