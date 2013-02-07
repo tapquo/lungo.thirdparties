@@ -5,15 +5,20 @@
 ##USAGE
 
 - Create a snippets folder in your emacs directory if it does not exist.
-- Download this repo and locate the Lungo's snippets folder for emacs.
 
 ```
   mkdir ~/.emacs.d/snippets
   cd ~/.emacs.d/snippets
 ```
 
-- Put in this directory the Lungo's snippets folder (LungoJS folder with html-mode subfolder).
-- Be sure that your snippets directory is loaded. In your emacs init file there should be something like this.
+- Download this repo and locate the LungoJS snippets folder for emacs, its into html-mode folder.
+- Put in your snippets directory, into the html-mode folder, the LungoJS snippets folder.
+
+```
+  ~/.emacs.d/snippets/html-mode/LungoJS/<snippets_files>
+```
+
+- Be sure that your snippets directory is loaded from your emacs init file. There should be something like this.
 
 ```
   (setq yas/root-directory '(".emacs.d/snippets"
