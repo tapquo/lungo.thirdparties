@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# contributor: David Basoko <basoko@gmail.com>
+# name: lungo-nav
+# key: lngnav
+# --
+<nav>
+        <a href="#${1:link-1}" data-icon="${2:user}">
+           <abbr>${3:link-1-title}</abbr>
+        </a>
+        ${4:<a href="#${5:link-2}" data-icon="${6:user}">
+           <abbr>${7:link-2-title}</abbr>
+        </a>}
+        $0
+</nav

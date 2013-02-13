@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# contributor: David Basoko <basoko@gmail.com>
+# name: lungo-aside
+# key: lngaside
+# --
+<aside id="${1:aside_name}" ${2: class="${3:onleft}"}>
+$0
+</aside>

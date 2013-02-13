@@ -1,9 +1,0 @@
-<snippet>
-	<content><![CDATA[
-<a href="#${1:article-1}" data-target="${2:article}" data-icon="${3:back}" ${4:data-title="${5:title}"} >${5:title}</a>
-]]></content>
-	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>lnga</tabTrigger>
-	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope>source.lungojs</scope>
-</snippet>

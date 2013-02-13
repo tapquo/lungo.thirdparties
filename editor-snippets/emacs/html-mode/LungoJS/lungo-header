@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# contributor: David Basoko <basoko@gmail.com>
-# name: lungo-header
-# key: lngheader
-# --
-<header data-back="${1:home blue}" data-title="${2:Title of section}"></header>

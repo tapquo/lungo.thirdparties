@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# contributor: David Basoko <basoko@gmail.com>
-# name: lungo-section
-# key: lngsec
-# --
-<section id="${1:section_name}" ${2: class="${3:some_class}"}>
-$0
-</section>

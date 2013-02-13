@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# contributor: David Basoko <basoko@gmail.com>
-# name: lungo-a
-# key: lnga
-# --
-<a href="#${1:element_id}" data-target="${2:article}" data-icon="${3:back}" ${4: data-title="${5:title}"}>${6:title}</a>

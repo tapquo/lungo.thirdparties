@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+<footer class="toolbar">
+    <nav>
+        <a href="#${1:link-1}" data-title="${2:title-1}"></a>
+        <a href="#${3:link-2}" data-title="${4:title-2}"></a>
+    </nav>
+</footer>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>lngtoolbar</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.lungojs</scope>
+</snippet>
