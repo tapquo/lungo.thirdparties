@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# contributor: David Basoko <basoko@gmail.com>
+# name: lungo-toolbar
+# key: lngtoolbar
+# --
+<footer class="toolbar">
+        <nav>
+                <a href="#${1:link-1}" data-title="${2:title-1}"></a>
+                ${3:<a href="#${4:link-2}" data-title="${5:title-2}"></a>
+                $0
+        </nav>
+</footer>
